@@ -52,7 +52,7 @@ namespace Rate_A_Cop.Controllers
             Officer.OfficerName = OfficerName;
             Officer.BadgeNumber = BadgeNumber;
            
-            
+            //if(review.ReviewType == "po")
 
             if (ModelState.IsValid)
             {

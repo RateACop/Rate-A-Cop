@@ -16,6 +16,15 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        @*Choose Positive or Negative Review*@
+        <div class="form-group">
+            @Html.Label("Positive/Negative", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButtonFor(x => x.ReviewType, "1", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButtonFor(x => x.ReviewType, "2", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
         @*Creates an empty label to enter officer name and passes it to Reviews Controller*@
         <div class="form-group">
             @Html.Label("Officer Name", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,13 +50,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.ReviewType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ReviewType, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
