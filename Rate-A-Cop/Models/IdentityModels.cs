@@ -29,5 +29,9 @@ namespace Rate_A_Cop.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Rate_A_Cop.Models.Officer> Officers { get; set; }
+
+        public System.Data.Entity.DbSet<Rate_A_Cop.Models.Review> Reviews { get; set; }
     }
 }
