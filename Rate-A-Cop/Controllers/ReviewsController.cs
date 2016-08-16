@@ -46,10 +46,12 @@ namespace Rate_A_Cop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp")] Review review, string OfficerName)
+        public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp")] Review review, string OfficerName, string BadgeNumber)
         {
             var Officer = new Officer();
             Officer.OfficerName = OfficerName;
+            Officer.BadgeNumber = BadgeNumber;
+           
             
 
             if (ModelState.IsValid)
