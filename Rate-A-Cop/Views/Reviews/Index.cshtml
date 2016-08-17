@@ -12,6 +12,15 @@
 <table class="table">
     <tr>
         <th>
+            User
+        </th>
+        <th>
+            Officer
+        </th>
+        <th>
+            Badge Number
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ReviewText)
         </th>
         <th>
@@ -28,6 +37,15 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Officer.OfficerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Officer.BadgeNumber)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReviewText)
         </td>

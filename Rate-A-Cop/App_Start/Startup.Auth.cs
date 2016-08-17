@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Rate_A_Cop.Models;
+using System.Web.Configuration;
 
 namespace Rate_A_Cop
 {
@@ -58,11 +59,11 @@ namespace Rate_A_Cop
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = WebConfigurationManager.AppSettings["GoogleClientId"],
+                ClientSecret = WebConfigurationManager.AppSettings["GoogleSecret"]
+            });
         }
     }
 }

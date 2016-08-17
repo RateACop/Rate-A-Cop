@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Rate_A_Cop.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Rate_A_Cop.Controllers
 {
@@ -14,9 +16,20 @@ namespace Rate_A_Cop.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        private ApplicationUser CurrentUser
+        {
+            get
+            {
+                UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser currentUser = UserManager.FindById(User.Identity.GetUserId());
+                return currentUser;
+            }
+        }
+
         // GET: Reviews
         public ActionResult Index()
         {
+           // var officer = db.Officers.Include(x => x.OfficerName);
             return View(db.Reviews.ToList());
         }
 
@@ -50,10 +63,11 @@ namespace Rate_A_Cop.Controllers
         {
             var Officer = new Officer();
             Officer.OfficerName = OfficerName;
-            Officer.BadgeNumber = BadgeNumber;
-           
-            //if(review.ReviewType == "po")
 
+            Officer.BadgeNumber = BadgeNumber;
+            review.ApplicationUser = CurrentUser;
+            review.Officer = Officer;
+            
             if (ModelState.IsValid)
             {
                 db.Officers.Add(Officer);
@@ -61,7 +75,6 @@ namespace Rate_A_Cop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(review);
         }
 
