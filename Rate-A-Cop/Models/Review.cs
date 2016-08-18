@@ -16,6 +16,8 @@ namespace Rate_A_Cop.Models
         public string Location { get; set; }
         [DataType(DataType.DateTime)]
         public string ReviewTimeStamp { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime ReviewDateTime { get; set; }
 
         // navigation properties
         public virtual ApplicationUser ApplicationUser { get; set; }
