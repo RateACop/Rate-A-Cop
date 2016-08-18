@@ -16,6 +16,7 @@ namespace Rate_A_Cop.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //pulls current user's id. This method will be used to display the user's username next to each review.
         private ApplicationUser CurrentUser
         {
             get
@@ -61,13 +62,19 @@ namespace Rate_A_Cop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp")] Review review, string OfficerName, string BadgeNumber)
         {
+            //adds new officer to the Officers table
             var Officer = new Officer();
             Officer.OfficerName = OfficerName;
-
             Officer.BadgeNumber = BadgeNumber;
-            review.ApplicationUser = CurrentUser;
+
             review.Officer = Officer;
-            
+
+            review.ApplicationUser = CurrentUser;
+
+            //if(review.IsAnonymous == true)
+            //{
+            //    CurrentUser.UserName = "Anonymous";
+            //}
             if (ModelState.IsValid)
             {
                 db.Officers.Add(Officer);
@@ -75,6 +82,7 @@ namespace Rate_A_Cop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(review);
         }
 

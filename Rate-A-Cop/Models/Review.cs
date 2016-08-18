@@ -10,6 +10,7 @@ namespace Rate_A_Cop.Models
     {
         // properties
         public int ReviewID { get; set; }
+        public bool IsAnonymous { get; set; }
         public string ReviewText { get; set; }
         public short ReviewType { get; set; }
         public string Location { get; set; }
