@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            Posted On:
+        </th>
+        <th>
             User
         </th>
         <th>
@@ -38,7 +41,17 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            @Html.DisplayFor(modelItem => item.ReviewDateTime)
+        </td>
+        <td>
+            @if (item.IsAnonymous == true)
+            {
+                <span>Anonymous</span>
+            }
+            else
+            {
+            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName) 
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Officer.OfficerName)

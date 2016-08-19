@@ -60,21 +60,17 @@ namespace Rate_A_Cop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp")] Review review, string OfficerName, string BadgeNumber)
+        public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp,IsAnonymous")] Review review, string OfficerName, string BadgeNumber)
         {
             //adds new officer to the Officers table
             var Officer = new Officer();
             Officer.OfficerName = OfficerName;
             Officer.BadgeNumber = BadgeNumber;
+            review.ReviewDateTime = DateTime.Now;
 
             review.Officer = Officer;
 
             review.ApplicationUser = CurrentUser;
-
-            //if(review.IsAnonymous == true)
-            //{
-            //    CurrentUser.UserName = "Anonymous";
-            //}
             if (ModelState.IsValid)
             {
                 db.Officers.Add(Officer);

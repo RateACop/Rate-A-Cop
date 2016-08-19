@@ -15,9 +15,48 @@ namespace Rate_A_Cop.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Officers
-        public ActionResult Index()
+        public ActionResult Index(string sortColumn, string searchString)
         {
-            return View(db.Officers.ToList());
+            // Search bar
+            var officers = from item in db.Officers
+                           select item;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                officers = from item in officers
+                           where item.OfficerName.Contains(searchString) ||
+                                 item.BadgeNumber.Contains(searchString)
+                           select item;
+            }
+
+            // Display names in alphabetical oder (Asc or Desc)
+            switch (sortColumn)
+            {
+                case "FirstName":
+                    officers = from item in officers
+                               orderby item.OfficerName
+                               select item;
+                    break;
+                case "FirstNameRev":
+                    officers = from item in officers
+                               orderby item.OfficerName descending
+                               select item;
+                    break;
+                case "LastNameRev":
+                    officers = from item in officers
+                               orderby item.BadgeNumber descending
+                               select item;
+                    break;
+                case "LastName":
+                default:
+                    officers = from item in officers
+                               orderby item.BadgeNumber
+                               select item;
+                    break;
+            }
+
+            return View(officers);
+            //return View(db.Officers.ToList());
         }
 
         // GET: Officers/Details/5
