@@ -71,11 +71,6 @@ namespace Rate_A_Cop.Controllers
             review.Officer = Officer;
 
             review.ApplicationUser = CurrentUser;
-            //review.IsAnonymous = true;
-            //if (review.IsAnonymous == true)
-            //{
-            //    review.ApplicationUser.UserName = "Anonymous";
-            //}
             if (ModelState.IsValid)
             {
                 db.Officers.Add(Officer);

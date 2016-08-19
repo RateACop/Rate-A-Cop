@@ -44,12 +44,14 @@
             @Html.DisplayFor(modelItem => item.ReviewDateTime)
         </td>
         <td>
-            @*@if (item.IsAnonymous == true)
+            @if (item.IsAnonymous == true)
             {
-                item.ApplicationUser.UserName = "Anonymous";
-            }*@
-            
+                <span>Anonymous</span>
+            }
+            else
+            {
             @Html.DisplayFor(modelItem => item.ApplicationUser.UserName) 
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Officer.OfficerName)
