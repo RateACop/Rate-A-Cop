@@ -16,6 +16,8 @@ namespace Rate_A_Cop.Models
         public string Location { get; set; }
         [DataType(DataType.DateTime)]
         public string ReviewTimeStamp { get; set; }
+        public double Longitude { get; set; }
+        public double Lattitude { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime ReviewDateTime { get; set; }
 
