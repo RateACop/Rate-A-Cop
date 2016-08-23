@@ -62,23 +62,43 @@ namespace Rate_A_Cop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp,IsAnonymous")] Review review, string OfficerName, string BadgeNumber)
         {
+
+            var officer = db.Officers.SingleOrDefault(x => x.BadgeNumber == BadgeNumber);
+
             //adds new officer to the Officers table
-            var Officer = new Officer();
-            Officer.OfficerName = OfficerName;
-            Officer.BadgeNumber = BadgeNumber;
-            review.ReviewDateTime = DateTime.Now;
-
-            review.Officer = Officer;
-
-            review.ApplicationUser = CurrentUser;
-            if (ModelState.IsValid)
+            if (officer.BadgeNumber == null)
             {
-                db.Officers.Add(Officer);
-                db.Reviews.Add(review);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                var Officer = new Officer();
+                Officer.OfficerName = OfficerName;
+                Officer.BadgeNumber = BadgeNumber;
 
+                review.ReviewDateTime = DateTime.Now;
+
+                review.Officer = Officer;
+
+                review.ApplicationUser = CurrentUser;
+                if (ModelState.IsValid)
+                {
+                    db.Officers.Add(Officer);
+                    db.Reviews.Add(review);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                review.ReviewDateTime = DateTime.Now;
+
+                review.ApplicationUser = CurrentUser;
+                if (ModelState.IsValid)
+                {
+                    db.Reviews.Add(review);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+
+            }
             return View(review);
         }
 
