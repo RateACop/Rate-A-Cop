@@ -54,7 +54,9 @@
             }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Officer.OfficerName)
+            <a href="@Url.Action("Details", "Officers", new { id=item.ReviewID })">
+                @Html.DisplayFor(modelItem => item.Officer.OfficerName)
+            </a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Officer.BadgeNumber)
