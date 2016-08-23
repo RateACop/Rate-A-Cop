@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Review</h4>
         <hr />
@@ -20,11 +20,17 @@
         <div class="form-group">
             @Html.Label("Positive/Negative", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+<<<<<<< HEAD
                 <span>Positive&nbsp;</span>@Html.RadioButtonFor(x => x.ReviewType, "1", new { htmlAttributes = new { @class = "form-control" } })
                <span>&nbsp;&nbsp;&nbsp; Negative&nbsp;</span>@Html.RadioButtonFor(x => x.ReviewType, "2", new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
+=======
+                @Html.RadioButtonFor(x => x.ReviewType, "1", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButtonFor(x => x.ReviewType, "2", new { htmlAttributes = new { @class = "form-control" } })
 
+>>>>>>> master
+            </div>
+            @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
+        </div>
         <div class="form-group">
             @Html.Label("Privacy", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -32,7 +38,6 @@
                 <span>&nbsp;&nbsp;&nbsp; Display username&nbsp;</span>@Html.RadioButtonFor(x => x.IsAnonymous, false, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
-
         @*Creates an empty label to enter officer name and passes it to Reviews Controller*@
         <div class="form-group">
             @Html.Label("Officer Name", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -59,13 +64,22 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.ReviewType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReviewType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.ReviewType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ReviewType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReviewTimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -73,6 +87,7 @@
                 @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
             </div>
         </div>
+<<<<<<< HEAD
 
         <div class="form-group">
             @Html.Label("Date & Time", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -80,8 +95,10 @@
                 @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
             </div>
+=======
+        <div id="maps">
+>>>>>>> master
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -96,4 +113,87 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFhq8GA9eLgA_Tc7CnME6a0JYjC75B2U0&callback=getLocation"
+        async defer></script>
+
+@*displays map and markers accordingly after running all code below*@
+<div id="mapholder"></div>
+
+<script>
+        //Finds users initial location based on device location
+        var x = document.getElementById("demo");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+            latlon = new google.maps.LatLng(lat, lon)
+            mapholder = document.getElementById('mapholder')
+            mapholder.style.height = '250px';
+            mapholder.style.width = '500px';
+
+            //Pulls initial values from above function and displays them in Lat/Long boxes
+            //document.getElementById("Latitude").value = lat;
+            //document.getElementById("Longitude").value = lon;
+            
+            //Finds user designated location by allowing user to drag pin/marker on map. overrides initial location
+
+            //Allows tweaking of map details and presentation (I think)
+            var myOptions = {
+                center:latlon,zoom:14,
+                mapTypeId:google.maps.MapTypeId.ROADMAP,
+                mapTypeControl:false,
+                navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+            }
+
+            var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+            //Code for marker and ability to drag marker to designate place
+            var marker = new google.maps.Marker({
+                position: latlon,
+                map: map,
+                draggable: true,
+                title: "You are here!"
+            });
+            google.maps.event.addListener(marker, 'dragend', function (a) {
+                console.log(a);
+                var ulat = a.latLng.lat();
+                var ulon = a.latLng.lng();
+                console.log(ulat);
+                console.log(ulon);
+
+                //Pulls user selected values from above function and displays them in Lat/Long boxes
+                //document.getElementById("Latitude").value = ulat;
+                //document.getElementById("Longitude").value = ulon;
+            });
+
+
+        }
+        //Error related code when user has no location or denies access
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
+</script>
+  
