@@ -62,11 +62,10 @@ namespace Rate_A_Cop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp,IsAnonymous,Lattitude,Longitude")] Review review, string OfficerName, string BadgeNumber)
         {
-
+            //looks for badge number and if matched it doesn't create a new officer object
             var officer = db.Officers.SingleOrDefault(x => x.BadgeNumber == BadgeNumber);
-            //var getOfficerId = db.Officers.Where(x => x.BadgeNumber == BadgeNumber).Select
 
-            //adds new officer to the Officers table
+            //adds new officer to the Officers table if a new badge number is entered
             if (officer == null)
             {
                 officer = new Officer();
