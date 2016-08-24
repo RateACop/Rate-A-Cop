@@ -64,30 +64,20 @@ namespace Rate_A_Cop.Controllers
         {
 
             var officer = db.Officers.SingleOrDefault(x => x.BadgeNumber == BadgeNumber);
-            //var getOfficerId = db.Officers.Where(x => x.BadgeNumber == BadgeNumber).Select(x => new Officer())
+            //var getOfficerId = db.Officers.Where(x => x.BadgeNumber == BadgeNumber).Select
+
             //adds new officer to the Officers table
-            if (officer.BadgeNumber == null)
+            if (officer == null)
             {
-                var Officer = new Officer();
-                Officer.OfficerName = OfficerName;
-                Officer.BadgeNumber = BadgeNumber;
-
-                review.ReviewDateTime = DateTime.Now;
-
-                review.Officer = Officer;
-
-                review.ApplicationUser = CurrentUser;
-                if (ModelState.IsValid)
-                {
-                    db.Officers.Add(Officer);
-                    db.Reviews.Add(review);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                officer = new Officer();
+                officer.OfficerName = OfficerName;
+                officer.BadgeNumber = BadgeNumber;
+                db.Officers.Add(officer);
             }
-            else
-            {
-                review.ReviewDateTime = DateTime.Now;
+
+            review.ReviewDateTime = DateTime.Now;
+
+                review.Officer = officer;
 
                 review.ApplicationUser = CurrentUser;
                 if (ModelState.IsValid)
@@ -96,9 +86,6 @@ namespace Rate_A_Cop.Controllers
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-
-
-            }
             return View(review);
         }
 
