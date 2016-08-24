@@ -60,13 +60,13 @@ namespace Rate_A_Cop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp,IsAnonymous")] Review review, string OfficerName, string BadgeNumber)
+        public ActionResult Create([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp,IsAnonymous,Lattitude,Longitude")] Review review, string OfficerName, string BadgeNumber)
         {
 
             var officer = db.Officers.SingleOrDefault(x => x.BadgeNumber == BadgeNumber);
 
             //adds new officer to the Officers table
-            if (officer.BadgeNumber == null)
+            if (officer == null)
             {
                 var Officer = new Officer();
                 Officer.OfficerName = OfficerName;

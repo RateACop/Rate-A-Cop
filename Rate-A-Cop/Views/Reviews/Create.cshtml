@@ -10,6 +10,8 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Lattitude)
+    @Html.HiddenFor(x => x.Longitude)
 
     <div class="form-horizontal">
         <h4>Review</h4>
@@ -142,8 +144,8 @@
             mapholder.style.width = '500px';
 
             //Pulls initial values from above function and displays them in Lat/Long boxes
-            //document.getElementById("Latitude").value = lat;
-            //document.getElementById("Longitude").value = lon;
+            document.getElementById("Lattitude").value = lat;
+            document.getElementById("Longitude").value = lon;
             
             //Finds user designated location by allowing user to drag pin/marker on map. overrides initial location
 
@@ -171,8 +173,8 @@
                 console.log(ulon);
 
                 //Pulls user selected values from above function and displays them in Lat/Long boxes
-                //document.getElementById("Latitude").value = ulat;
-                //document.getElementById("Longitude").value = ulon;
+                document.getElementById("Lattitude").value = ulat;
+                document.getElementById("Longitude").value = ulon;
             });
 
 
