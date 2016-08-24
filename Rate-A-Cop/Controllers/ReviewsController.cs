@@ -64,7 +64,7 @@ namespace Rate_A_Cop.Controllers
         {
 
             var officer = db.Officers.SingleOrDefault(x => x.BadgeNumber == BadgeNumber);
-
+            //var getOfficerId = db.Officers.Where(x => x.BadgeNumber == BadgeNumber).Select(x => new Officer())
             //adds new officer to the Officers table
             if (officer.BadgeNumber == null)
             {
