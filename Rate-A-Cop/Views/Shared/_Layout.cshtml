@@ -17,6 +17,15 @@
         window.appInsights=appInsights;
         appInsights.trackPageView();
     </script>
+    <!-- JS file -->
+    <script src="path/to/jquery.easy-autocomplete.min.js"></script>
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="path/to/easy-autocomplete.min.css">
+
+    <!-- Additional CSS Themes file - not required-->
+    <link rel="stylesheet" href="path/to/easy-autocomplete.themes.min.css"> 
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -52,5 +61,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Autocomplete.js/"></script>
 </body>
 </html>

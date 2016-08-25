@@ -7,6 +7,7 @@
 <h2>Create</h2>
 
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -35,10 +36,12 @@
                 <span>&nbsp;&nbsp;&nbsp; Display username&nbsp;</span>@Html.RadioButtonFor(x => x.IsAnonymous, false, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
+
+        <input id="officers-json" />
         @*Creates an empty label to enter officer name and passes it to Reviews Controller*@
-        <div class="form-group">
+        <div class="form-group">           
             @Html.Label("Officer Name", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10" id="officers-json">
                 @Html.Editor("OfficerName", new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
