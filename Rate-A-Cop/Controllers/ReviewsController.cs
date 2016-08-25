@@ -27,6 +27,15 @@ namespace Rate_A_Cop.Controllers
             }
         }
 
+        public ActionResult getAllCountries()
+        {
+           // using (Database db = new DatabaseEntities())
+            {
+                var officerlist = db.Officers.OrderBy(a => a.OfficerName).ToList();
+                return new JsonResult { Data = officerlist, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+        }
+
         // GET: Reviews
         public ActionResult Index()
         {

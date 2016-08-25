@@ -93,3 +93,20 @@
 }
 
 </table>
+
+
+<div class="container">
+    <h2>Autocomplete textbox in AngularJS</h2>
+    <div ng-app="myapp">
+        <div ng-controller="AutoCompleteController">
+            <div angucomplete-alt id="txtAutocomplete" placeholder="Type officer name" pause="100"
+                 selected-object="SelectedOfficer" local-data="Officers" search-fields="OfficerName"
+                 title-field="OfficerName" minlength="1" input-class="form-control" match-class="highlight">
+            </div>
+            <!--display selected officer-->
+            <div ng-show="SelectedOfficer">
+                Selected Country : {{SelectedOfficer.OfficerName}}
+            </div>
+        </div>
+    </div>
+</div>
