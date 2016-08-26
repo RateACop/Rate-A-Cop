@@ -1,18 +1,21 @@
-﻿@model IEnumerable<Rate_A_Cop.Models.Officer>
+﻿@*@model IEnumerable<Rate_A_Cop.Models.Officer>*@
+    @model PagedList.IPagedList<Rate_A_Cop.Models.Officer>
+    @using PagedList.Mvc;
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Officers";
 }
 
-<h2>Index</h2>
+<h2>Officers</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm())
-{
+   @using (Html.BeginForm("Index", "Officer", FormMethod.Get))
+    {
     <p class="searchbar">
-        Search for: @Html.TextBox("searchString")
+        Search for: @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -20,10 +23,12 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BadgeNumber)
+            @*@Html.DisplayNameFor(model => model.BadgeNumber)*@ 
+            @Html.ActionLink("Badge Number", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OfficerName)
+            @*@Html.DisplayNameFor(model => model.OfficerName)*@
+            @Html.ActionLink("Officer Name", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -43,3 +48,8 @@
 }
 
 </table>
+<br />
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+ 
+ @Html.PagedListPager(Model, page => Url.Action("Index",
+ new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
