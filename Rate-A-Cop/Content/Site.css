@@ -1,12 +1,26 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
+    /*<----- Added CSS ----->*/
+    color:#212121;
+    background-color:#949494;
+    font-family:  Roboto, sans-serif;
+    left:0;
+    height:100vh;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
+    
+    /*<----- Added CSS ----->*/
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin:0,0,0,0;
+
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -22,3 +36,94 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/*------------------------Added CSS-------------------------*/
+@font-face {
+    font-family: 'FjallaOne-Regular';
+    src: url('../fonts/FjallaOne-Regular.ttf') format('truetype');
+}
+
+.title{
+    font-size:5em;
+    font-family:FjallaOne-Regular;
+    margin-top:-50px;
+    padding-top:150px;
+    color:white;
+    opacity:0.8;
+    letter-spacing:16px;
+}
+.title-p{
+    color:white;
+    opacity:0.3;
+    margin-top:-10px;
+    letter-spacing:20px;
+    text-align:center;
+}
+.index{
+    text-align:center;
+}
+.tips{
+    padding:5%;
+}
+h1, h2, h3, p{
+    opacity:0.9;
+}
+.home-page {
+    background-image: url('../Images/bg-overlay.png');
+    background-size:auto;
+    background-repeat:repeat;
+    height:100vh;
+    margin-top:0px;
+    padding-top:-20px;
+    z-index:2;
+}
+.home-page-bg {
+    background-image: url('../Images/lights-top-gradient.jpg');
+    background-size: cover;
+}
+.navbar-inverse{
+    background-color:transparent;
+    border:none;
+}
+.navbar-inverse .navbar-nav > li > a {
+    /*color: #4D4D4D;*/
+    color: #e4e4e4;
+    font-size:1.2em;
+    font-weight:300;
+    padding-top:18px;
+    font-weight:500;
+}
+.container-fluid{
+    margin-top:0px;
+    padding-top:-20px;
+}
+.table{
+    font-family:  Roboto, sans-serif;
+}
+
+.navbar-inverse .navbar-brand {
+    /*color: #4D4D4D;*/
+    color: #e4e4e4;
+    font-size:2em;
+    padding-left:30px;
+    padding-right:20px;
+}
+.login{
+    padding-right:30px;
+    font-size:0.8em;
+    padding-top:0px;
+}
+.reviews-index{
+    padding:0 10px 0 10px;
+}
+.center-nav{
+    margin:0 auto 0 auto;
+}
+.text-review{
+    max-width:400px;
+}
+.officer-name-link{
+    color:black;
+}
+

@@ -236,10 +236,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bg-overlay.png" />
+    <Content Include="Images\lights-top-gradient-2.jpg" />
+    <Content Include="Images\lights-top-gradient.jpg" />
+    <Content Include="Images\lights.jpg" />
+    <Content Include="Images\lights2.jpg" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\FjallaOne-Regular.ttf" />
     <None Include="Properties\PublishProfiles\Rate-A-Cop.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
