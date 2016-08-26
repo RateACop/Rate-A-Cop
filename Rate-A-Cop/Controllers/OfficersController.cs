@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Rate_A_Cop.Models;
+using PagedList;
 
 namespace Rate_A_Cop.Controllers
 {
@@ -15,8 +16,21 @@ namespace Rate_A_Cop.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Officers
-        public ActionResult Index(string sortColumn, string searchString)
+        public ActionResult Index(string sortColumn, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortColumn;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             // Search bar
             var officers = from item in db.Officers
                            select item;
@@ -54,6 +68,10 @@ namespace Rate_A_Cop.Controllers
                                select item;
                     break;
             }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(officers.ToPagedList(pageNumber, pageSize));
 
             return View(officers);
         }
