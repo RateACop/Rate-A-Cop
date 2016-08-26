@@ -9,7 +9,9 @@
         <h2>Index</h2>
 
         <p>
-            @Html.ActionLink("Create New", "Create")
+            <a href=@Url.Action("Create", "Reviews")><span class="btn btn-default">Create New Review</span></a>
+
+            @*@Html.ActionLink("Create New", "Create")*@
         </p>
         <table class="table">
             <tr>
@@ -57,14 +59,14 @@
                         }
                     </td>
                     <td>
-                        <a href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">
+                        <a class="officer-name-link" href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">
                             @Html.DisplayFor(modelItem => item.Officer.OfficerName)
                         </a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Officer.BadgeNumber)
                     </td>
-                    <td>
+                    <td class="text-review">
                         @Html.DisplayFor(modelItem => item.ReviewText)
                     </td>
                     <td>

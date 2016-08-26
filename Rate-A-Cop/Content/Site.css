@@ -56,6 +56,9 @@ textarea {
 .title-p{
     color:white;
     opacity:0.3;
+    margin-top:-10px;
+    letter-spacing:20px;
+    text-align:center;
 }
 .index{
     text-align:center;
@@ -89,6 +92,7 @@ h1, h2, h3, p{
     font-size:1.2em;
     font-weight:300;
     padding-top:18px;
+    font-weight:500;
 }
 .container-fluid{
     margin-top:0px;
@@ -115,5 +119,11 @@ h1, h2, h3, p{
 }
 .center-nav{
     margin:0 auto 0 auto;
+}
+.text-review{
+    max-width:400px;
+}
+.officer-name-link{
+    color:black;
 }
 
