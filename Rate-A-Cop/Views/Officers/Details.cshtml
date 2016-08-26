@@ -7,7 +7,6 @@
 <h2>Officer Details</h2>
 
 <div>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             Badge Number
@@ -28,8 +27,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OfficerID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href=@Url.Action("Index", "Reviews")><span class="btn btn-default">Back to Reviews</span></a>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.OfficerID }) |
+    @Html.ActionLink("Back to List", "Index")*@
 </p>
 
 <table class="table">
