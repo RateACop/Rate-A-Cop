@@ -3,93 +3,98 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="reviews-index container">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        
+        <h2>Index</h2>
 
-<h2>Index</h2>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Posted On:
+                </th>
+                <th>
+                    User
+                </th>
+                <th>
+                    Officer
+                </th>
+                <th>
+                    Badge Number
+                </th>
+                <th>
+                    Review
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    Date & Time
+                </th>
+                <th></th>
+            </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Posted On:
-        </th>
-        <th>
-            User
-        </th>
-        <th>
-            Officer
-        </th>
-        <th>
-            Badge Number
-        </th>
-        <th>
-            Review
-        </th>
-        <th>
-            Type
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            Date & Time
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewDateTime)
+                    </td>
+                    <td>
+                        @if (item.IsAnonymous == true)
+                        {
+                            <span>Anonymous</span>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">
+                            @Html.DisplayFor(modelItem => item.Officer.OfficerName)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Officer.BadgeNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewText)
+                    </td>
+                    <td>
+                        @if (item.ReviewType == 1)
+                        {
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                        }
+                        else if (item.ReviewType == 2)
+                        {
+                            <span class="glyphicon glyphicon-thumbs-down"></span>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.ReviewType)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewTimeStamp)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ReviewID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ReviewID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ReviewID })
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReviewDateTime)
-        </td>
-        <td>
-            @if (item.IsAnonymous == true)
-            {
-                <span>Anonymous</span>
-            }
-            else
-            {
-            @Html.DisplayFor(modelItem => item.ApplicationUser.UserName) 
-            }
-        </td>
-        <td>
-            <a href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">
-                @Html.DisplayFor(modelItem => item.Officer.OfficerName)
-            </a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Officer.BadgeNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReviewText)
-        </td>
-        <td>
-            @if (item.ReviewType == 1)
-            {
-                <span class="glyphicon glyphicon-thumbs-up"></span>
-            }
-            else if (item.ReviewType == 2)
-            {
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-            }
-            else
-            {
-                @Html.DisplayFor(modelItem => item.ReviewType)
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReviewTimeStamp)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ReviewID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ReviewID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ReviewID })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
+</div>
