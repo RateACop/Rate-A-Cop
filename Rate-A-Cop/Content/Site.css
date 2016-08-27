@@ -3,7 +3,7 @@
     /*padding-bottom: 20px;*/
     /*<----- Added CSS ----->*/
     color:#212121;
-    background-color:#949494;
+    background-color:rgb(32,51,73);
     font-family:  Roboto, sans-serif;
     left:0;
     height:100vh;
@@ -89,10 +89,10 @@ h1, h2, h3, p{
 .navbar-inverse .navbar-nav > li > a {
     /*color: #4D4D4D;*/
     color: #e4e4e4;
-    font-size:1.2em;
+    font-size:1em;
     font-weight:300;
     padding-top:18px;
-    font-weight:500;
+    letter-spacing:5px;
 }
 .container-fluid{
     margin-top:0px;
@@ -108,6 +108,8 @@ h1, h2, h3, p{
     font-size:2em;
     padding-left:30px;
     padding-right:20px;
+    font-family:FjallaOne-Regular;
+    letter-spacing:5px;
 }
 .login{
     padding-right:30px;
@@ -118,7 +120,7 @@ h1, h2, h3, p{
     padding:0 10px 0 10px;
 }
 .center-nav{
-    margin:0 auto 0 auto;
+    /*margin:0 auto 0 auto;*/
 }
 .text-review{
     max-width:400px;
@@ -126,11 +128,13 @@ h1, h2, h3, p{
 .officer-name-link{
     color:black;
 }
-
-/*.navbar {background-color: blue;}
+.navbar {background-color: rgba(3,3,11,1);}
+.navbar-home-page{background-color: transparent;}
 .navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand {color: #f1f1f1;}
 .navbar-default .navbar-nav > li > a:hover, 
-.navbar-default .navbar-nav > li > a:focus {color: #f1f1f1; background-color: #b27677;}*/
+.navbar-default .navbar-nav > li > a:focus {color: #f1f1f1; background-color: #b27677;}
+
+/*-------------------------- mobile nav bar colors -----------------------------*/
 
 @media only screen and (max-width: 766px) {
 .collapsing, .in {background-color: rgba(0,0,0,.9);}
