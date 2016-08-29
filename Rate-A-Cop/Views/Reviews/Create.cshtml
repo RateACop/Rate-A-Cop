@@ -21,11 +21,13 @@
         @*Choose Positive or Negative Review*@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary active">
+                <div id="review-type" class="btn-group" data-toggle="buttons">
+                    <label class="pdsa-radiobutton btn btn-primary active rType-positive">
+                        <span class="glyphicon glyphicon-check"></span>
                         @Html.RadioButton("ReviewType", "1", new { id = "isPositive" })Positive
                     </label>
-                    <label class="btn btn-primary">
+                    <label class="pdsa-radiobutton btn btn-danger rType-negative">
+                        <span class="glyphicon glyphicon-unchecked"></span>
                         @Html.RadioButton("ReviewType", "2", new { id = "isNegative" })Negative
                     </label>
                 </div>
@@ -205,4 +207,29 @@
                 break;
         }
     }
+</script>
+
+<script>
+  $(document).ready(function () {
+    $("#review-type > .pdsa-radiobutton").on('click', function () {
+      pdsaToggleRadioButtons("#review-type", $(this));
+    });
+  });
+
+  function pdsaToggleRadioButtons(groupName, current) {
+    // Find currently checked radio button in the group
+    var chk = $(groupName +
+       " .pdsa-radiobutton .glyphicon-check");
+
+    // Remove 'record' glyph
+    // Add 'unchecked' glyph
+    $(chk).removeClass('glyphicon-check')
+          .addClass('glyphicon-unchecked');
+
+    // Remove the 'unchecked' glyph, add the 'record' glyph
+    $(current).find(">:first-child")
+      .removeClass('glyphicon-unchecked');
+    $(current).find(">:first-child")
+      .addClass('glyphicon-check');
+  }
 </script>

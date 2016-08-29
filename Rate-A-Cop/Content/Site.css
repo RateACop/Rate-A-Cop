@@ -145,4 +145,11 @@ h1, h2, h3, p{
 /*.collapsing ul li a, .in ul li a {color: #555!important;}*/
 .collapsing ul li a:hover, .in ul li a:hover {color: #f1f1f1!important;}
 }
+.rType-positive{
+    border-radius:4px 4px 4px 4px !important;
+}
+.rType-negative{
+    margin-left:20px !important;
+    border-radius:4px 4px 4px 4px !important;
+}
 
