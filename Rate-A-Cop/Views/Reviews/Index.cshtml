@@ -10,9 +10,8 @@
 
         <p>
             <a href=@Url.Action("Create", "Reviews")><span class="btn btn-default">Create New Review</span></a>
-
-            @*@Html.ActionLink("Create New", "Create")*@
         </p>
+
         <table class="table">
             <tr>
                 <th>
@@ -89,11 +88,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ReviewTimeStamp)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.ReviewID }) |
                         @Html.ActionLink("Details", "Details", new { id = item.ReviewID }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.ReviewID })
-                    </td>
+                    </td>*@
                 </tr>
             }
 

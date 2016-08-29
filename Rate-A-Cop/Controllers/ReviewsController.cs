@@ -73,6 +73,8 @@ namespace Rate_A_Cop.Controllers
                 officer.BadgeNumber = BadgeNumber;
                 db.Officers.Add(officer);
             }
+            if (ViewBag.reviewType == 1)
+                review.ReviewType = 1;
 
             review.ReviewDateTime = DateTime.Now;
 
