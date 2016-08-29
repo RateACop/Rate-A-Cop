@@ -129,10 +129,14 @@ h1, h2, h3, p{
     color:black;
 }
 .navbar {background-color: rgba(3,3,11,1);}
-.navbar-home-page{background-color: transparent;}
 .navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand {color: #f1f1f1;}
 .navbar-default .navbar-nav > li > a:hover, 
 .navbar-default .navbar-nav > li > a:focus {color: #f1f1f1; background-color: #b27677;}
+
+/*----------  "Home Page" navbar background  -------------------*/
+.navbar-home-page{
+    background-color: transparent;
+}
 
 /*-------------------------- mobile nav bar colors -----------------------------*/
 
