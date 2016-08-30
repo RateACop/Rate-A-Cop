@@ -152,4 +152,13 @@ h1, h2, h3, p{
     margin-left:20px !important;
     border-radius:4px 4px 4px 4px !important;
 }
+#mapholder{
+    display:block;
+    margin:auto;
+    width:50% !important;
+}
+.create-form{
+    color: white;
+    font-family:  Roboto, sans-serif;
+}
 
