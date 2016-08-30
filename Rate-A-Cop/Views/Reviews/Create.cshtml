@@ -6,279 +6,285 @@
 
 <h2>Create</h2>
 
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.Lattitude)
+            @Html.HiddenFor(x => x.Longitude)
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(x => x.Lattitude)
-    @Html.HiddenFor(x => x.Longitude)
+            <div class="form-horizontal">
+                <h4>Review</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-horizontal">
-        <h4>Review</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        @*Choose Positive or Negative Review*@
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div id="review-type" class="btn-group" data-toggle="buttons">
-                    <label class="pdsa-radiobutton btn btn-primary active rType-positive">
-                        <span class="glyphicon glyphicon-unchecked"></span>
-                        @Html.RadioButton("ReviewType", 1, new { id = "isPositive" })Positive
-                    </label>
-                    <label class="pdsa-radiobutton btn btn-danger rType-negative">
-                        <span class="glyphicon glyphicon-unchecked"></span>
-                        @Html.RadioButton("ReviewType", 2, new { id = "isNegative" })Negative
-                    </label>
+                @*Choose Positive or Negative Review*@
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div id="review-type" class="btn-group" data-toggle="buttons">
+                            <label class="pdsa-radiobutton btn btn-primary active rType-positive">
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                                @Html.RadioButton("ReviewType", 1, new { id = "isPositive" })Positive
+                            </label>
+                            <label class="pdsa-radiobutton btn btn-danger rType-negative">
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                                @Html.RadioButton("ReviewType", 2, new { id = "isNegative" })Negative
+                            </label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        @*Choose Anonymous or Display Username*@
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div id="privacy" class="btn-group" data-toggle="buttons">
-                    <label class="pdsa-radiobutton btn btn-primary active rType-positive">
-                        <span class="glyphicon glyphicon-unchecked"></span>
-                        @Html.RadioButton("isAnonymous", true, new { id = "isAnonymous" })Anonymous
-                    </label>
-                    <label class="pdsa-radiobutton btn btn-primary rType-negative">
-                        <span class="glyphicon glyphicon-unchecked"></span>
-                        @Html.RadioButton("isAnonymous", false, new { id = "isNotAnonymous" })Display Username
-                    </label>
+                @*Choose Anonymous or Display Username*@
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div id="privacy" class="btn-group" data-toggle="buttons">
+                            <label class="pdsa-radiobutton btn btn-primary active rType-positive">
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                                @Html.RadioButton("isAnonymous", true, new { id = "isAnonymous" })Anonymous
+                            </label>
+                            <label class="pdsa-radiobutton btn btn-primary rType-negative">
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                                @Html.RadioButton("isAnonymous", false, new { id = "isNotAnonymous" })Display Username
+                            </label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
 
 
-        @*Choose if name is displayed or "anonymous" is displayed*@
-        @*<div class="form-group">
-            @Html.Label("Privacy", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <span>Anonymous&nbsp;</span>@Html.RadioButtonFor(x => x.IsAnonymous, true, new { htmlAttributes = new { @class = "form-control" } })
-                <span>&nbsp;&nbsp;&nbsp; Display username&nbsp;</span>@Html.RadioButtonFor(x => x.IsAnonymous, false, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>*@
+                @*Choose if name is displayed or "anonymous" is displayed*@
+                @*<div class="form-group">
+                        @Html.Label("Privacy", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <span>Anonymous&nbsp;</span>@Html.RadioButtonFor(x => x.IsAnonymous, true, new { htmlAttributes = new { @class = "form-control" } })
+                            <span>&nbsp;&nbsp;&nbsp; Display username&nbsp;</span>@Html.RadioButtonFor(x => x.IsAnonymous, false, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>*@
 
-        @*Creates an empty label to enter officer name and passes it to Reviews Controller*@
-        <div class="form-group">
-            @Html.Label("Officer Name", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.Editor("OfficerName", new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-
-        @*Creates an empty label to enter officer badge number and passes it to Reviews Controller*@
-        <div class="form-group">
-            @Html.Label("Badge Number", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.Editor("BadgeNumber", new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.Label("Review", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReviewText, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReviewText, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.ReviewType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ReviewType, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
+                @*Creates an empty label to enter officer name and passes it to Reviews Controller*@
+                <div class="form-group">
+                    @Html.Label("Officer Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("OfficerName", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
                 </div>
-            </div>*@
+
+                @*Creates an empty label to enter officer badge number and passes it to Reviews Controller*@
+                <div class="form-group">
+                    @Html.Label("Badge Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.Editor("BadgeNumber", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.Label("Review", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ReviewText, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReviewText, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.ReviewType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ReviewType, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReviewTimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReviewTimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.Label("Date & Time", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div id="maps">
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        }
 
 
-        <div class="form-group">
-            @Html.Label("Date & Time", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
-            </div>
+
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
         </div>
 
-
-        <div id="maps">
-
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
         </div>
     </div>
-}
 
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
 
 
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFhq8GA9eLgA_Tc7CnME6a0JYjC75B2U0&callback=getLocation"
-        async defer></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFhq8GA9eLgA_Tc7CnME6a0JYjC75B2U0&callback=getLocation"
+                    async defer></script>
 
-@*displays map and markers accordingly after running all code below*@
-<div id="mapholder"></div>
+            @*displays map and markers accordingly after running all code below*@
+            <div id="mapholder"></div>
 
-<script>
-    //Finds users initial location based on device location
-    var x = document.getElementById("demo");
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
+            <script>
+                //Finds users initial location based on device location
+                var x = document.getElementById("demo");
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition, showError);
+                    } else {
+                        x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                }
+
+                function showPosition(position) {
+                    lat = position.coords.latitude;
+                    lon = position.coords.longitude;
+                    latlon = new google.maps.LatLng(lat, lon)
+                    mapholder = document.getElementById('mapholder')
+                    mapholder.style.height = '250px';
+                    mapholder.style.width = '500px';
+
+                    //Pulls initial values from above function and displays them in Lat/Long boxes
+
+                    document.getElementById("Lattitude").value = lat;
+                    document.getElementById("Longitude").value = lon;
+
+                    //Finds user designated location by allowing user to drag pin/marker on map. overrides initial location
+
+                    //Allows tweaking of map details and presentation (I think)
+                    var myOptions = {
+                        center: latlon, zoom: 14,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        mapTypeControl: false,
+                        navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL }
+                    }
+
+                    var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+                    //Code for marker and ability to drag marker to designate place
+                    var marker = new google.maps.Marker({
+                        position: latlon,
+                        map: map,
+                        draggable: true,
+                        title: "You are here!"
+                    });
+                    google.maps.event.addListener(marker, 'dragend', function (a) {
+                        console.log(a);
+                        var ulat = a.latLng.lat();
+                        var ulon = a.latLng.lng();
+                        console.log(ulat);
+                        console.log(ulon);
+
+                        //Pulls user selected values from above function and displays them in Lat/Long boxes
+                        document.getElementById("Lattitude").value = ulat;
+                        document.getElementById("Longitude").value = ulon;
+                    });
+
+
+                }
+                //Error related code when user has no location or denies access
+                function showError(error) {
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            x.innerHTML = "User denied the request for Geolocation."
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            x.innerHTML = "Location information is unavailable."
+                            break;
+                        case error.TIMEOUT:
+                            x.innerHTML = "The request to get user location timed out."
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            x.innerHTML = "An unknown error occurred."
+                            break;
+                    }
+                }
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                    $("#review-type > .pdsa-radiobutton").on('click', function () {
+                        pdsaToggleRadioButtons("#review-type", $(this));
+                    });
+                });
+
+                function pdsaToggleRadioButtons(groupName, current) {
+                    // Find currently checked radio button in the group
+                    var chk = $(groupName +
+                       " .pdsa-radiobutton .glyphicon-check");
+                    var input = $("input", current);
+                    input.prop("checked", true);
+                    console.log(input.prop('checked'));
+                    console.log(input);
+
+                    // Remove 'record' glyph
+                    // Add 'unchecked' glyph
+                    $(chk).removeClass('glyphicon-check')
+                          .addClass('glyphicon-unchecked');
+
+                    // Remove the 'unchecked' glyph, add the 'record' glyph
+                    $(current).find(">:first-child")
+                      .removeClass('glyphicon-unchecked');
+                    $(current).find(">:first-child")
+                      .addClass('glyphicon-check');
+                }
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                    $("#privacy > .pdsa-radiobutton").on('click', function () {
+                        pdsaToggleRadioButtons("#privacy", $(this));
+                    });
+                });
+
+                //function pdsaToggleRadioButtons(groupName, current) {
+                //  // Find currently checked radio button in the group
+                //  var chk = $(groupName +
+                //     " .pdsa-radiobutton .glyphicon-check");
+
+                //  // Remove 'record' glyph
+                //  // Add 'unchecked' glyph
+                //  $(chk).removeClass('glyphicon-check')
+                //        .addClass('glyphicon-unchecked');
+
+                //  // Remove the 'unchecked' glyph, add the 'record' glyph
+                //  $(current).find(">:first-child")
+                //    .removeClass('glyphicon-unchecked');
+                //  $(current).find(">:first-child")
+                //    .addClass('glyphicon-check');
+                //}
+            </script>
+
         }
-    }
-
-    function showPosition(position) {
-        lat = position.coords.latitude;
-        lon = position.coords.longitude;
-        latlon = new google.maps.LatLng(lat, lon)
-        mapholder = document.getElementById('mapholder')
-        mapholder.style.height = '250px';
-        mapholder.style.width = '500px';
-
-        //Pulls initial values from above function and displays them in Lat/Long boxes
-
-        document.getElementById("Lattitude").value = lat;
-        document.getElementById("Longitude").value = lon;
-
-        //Finds user designated location by allowing user to drag pin/marker on map. overrides initial location
-
-        //Allows tweaking of map details and presentation (I think)
-        var myOptions = {
-            center: latlon, zoom: 14,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            mapTypeControl: false,
-            navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL }
-        }
-
-        var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
-        //Code for marker and ability to drag marker to designate place
-        var marker = new google.maps.Marker({
-            position: latlon,
-            map: map,
-            draggable: true,
-            title: "You are here!"
-        });
-        google.maps.event.addListener(marker, 'dragend', function (a) {
-            console.log(a);
-            var ulat = a.latLng.lat();
-            var ulon = a.latLng.lng();
-            console.log(ulat);
-            console.log(ulon);
-
-            //Pulls user selected values from above function and displays them in Lat/Long boxes
-            document.getElementById("Lattitude").value = ulat;
-            document.getElementById("Longitude").value = ulon;
-        });
-
-
-    }
-    //Error related code when user has no location or denies access
-    function showError(error) {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                x.innerHTML = "User denied the request for Geolocation."
-                break;
-            case error.POSITION_UNAVAILABLE:
-                x.innerHTML = "Location information is unavailable."
-                break;
-            case error.TIMEOUT:
-                x.innerHTML = "The request to get user location timed out."
-                break;
-            case error.UNKNOWN_ERROR:
-                x.innerHTML = "An unknown error occurred."
-                break;
-        }
-    }
-</script>
-
-<script>
-  $(document).ready(function () {
-    $("#review-type > .pdsa-radiobutton").on('click', function () {
-      pdsaToggleRadioButtons("#review-type", $(this));
-    });
-  });
-
-  function pdsaToggleRadioButtons(groupName, current) {
-    // Find currently checked radio button in the group
-    var chk = $(groupName +
-       " .pdsa-radiobutton .glyphicon-check");
-    var input = $("input", current);
-    input.prop("checked", true);
-    console.log(input.prop('checked'));
-    console.log(input);
-
-    // Remove 'record' glyph
-    // Add 'unchecked' glyph
-    $(chk).removeClass('glyphicon-check')
-          .addClass('glyphicon-unchecked');
-
-    // Remove the 'unchecked' glyph, add the 'record' glyph
-    $(current).find(">:first-child")
-      .removeClass('glyphicon-unchecked');
-    $(current).find(">:first-child")
-      .addClass('glyphicon-check');
-  }
-</script>
-
-<script>
-  $(document).ready(function () {
-    $("#privacy > .pdsa-radiobutton").on('click', function () {
-      pdsaToggleRadioButtons("#privacy", $(this));
-    });
-  });
-
-  //function pdsaToggleRadioButtons(groupName, current) {
-  //  // Find currently checked radio button in the group
-  //  var chk = $(groupName +
-  //     " .pdsa-radiobutton .glyphicon-check");
-
-  //  // Remove 'record' glyph
-  //  // Add 'unchecked' glyph
-  //  $(chk).removeClass('glyphicon-check')
-  //        .addClass('glyphicon-unchecked');
-
-  //  // Remove the 'unchecked' glyph, add the 'record' glyph
-  //  $(current).find(">:first-child")
-  //    .removeClass('glyphicon-unchecked');
-  //  $(current).find(">:first-child")
-  //    .addClass('glyphicon-check');
-  //}
-</script>
-
-    }
