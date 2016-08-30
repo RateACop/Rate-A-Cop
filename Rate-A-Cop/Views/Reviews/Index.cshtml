@@ -99,3 +99,52 @@
         </table>
     </div>
 </div>
+
+<body class="w3-container">
+
+    <h2></h2>
+    <div class="w3-card-4 w3-section w3-pale-blue w3-leftbar w3-rightbar w3-topbar w3-bottombar w3-border-grey w3-hover-border-red w3-section w3-border w3-round-xlarge" style="width:70%">
+        <header class="w3-container w3-lime green">
+            <h3>Karn Sharma</h3>
+        </header>
+        <div class="w3-container">
+            <p>Anonymous on 8/29/2016</p>
+            <hr class="w3-border-bottom w3-border-black">
+            <img src="http://www.iconsplace.com/icons/preview/red/thumbs-down-256.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            <p>I don't know what to type so I will just type whatever comes into my mind and hopefully fill up space in the body of the review....I'm also really hungry! ipsym lorem jik letuve. Lorem ipsum latin spanish english dutch latin sports sports sports</p><br>
+        </div>
+        <button class="w3-btn-block w3-lime green">Read More</button>
+    </div>
+</body>
+
+
+<body class="w3-container">
+@foreach (var item in Model)
+{
+    <h2></h2>
+    <div class="w3-card-4 w3-section w3-pale-blue w3-leftbar w3-rightbar w3-topbar w3-bottombar w3-border-grey w3-hover-border-red w3-section w3-border w3-round-xlarge" style="width:70%; margin:auto;">
+        <header class="w3-container w3-black">
+            @if (item.IsAnonymous == true)
+            {
+                <h4><span>Anonymous</span></h4>
+            }
+            else
+            {
+                <h4><span>@Html.DisplayFor(modelItem => item.ApplicationUser.UserName)</span></h4>
+            }
+        </header>
+        <div class="w3-container">
+            @Html.DisplayFor(modelItem => item.ReviewDateTime)
+            <hr class="w3-border-bottom w3-border-black">
+            <h5><strong>Officer: </strong><a class="officer-name-link" href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">
+    @Html.DisplayFor(modelItem => item.Officer.OfficerName)</a></h5>
+            <h5><strong>Badge Number: </strong>@Html.DisplayFor(modelItem => item.Officer.BadgeNumber)</h5>
+            <h5><strong>City: </strong>@Html.DisplayFor(modelItem => item.Location)</h5>
+            <img src="~/Images/thumbs-up-icon-blue-clip-art.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />
+            @*<img src="http://www.iconsplace.com/icons/preview/red/thumbs-down-256.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">*@
+            <p>@Html.DisplayFor(modelItem => item.ReviewText)</p>
+        </div>
+        <button class="w3-btn-block w3-lime green">Read More</button>
+    </div>
+}
+</body>
