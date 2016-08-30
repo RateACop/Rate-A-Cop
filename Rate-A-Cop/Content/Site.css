@@ -45,7 +45,7 @@ textarea {
 }
 
 .title{
-    font-size:5em;
+    font-size:3.4em;
     font-family:FjallaOne-Regular;
     margin-top:-50px;
     padding-top:150px;
@@ -74,7 +74,7 @@ h1, h2, h3, p{
     background-size:auto;
     background-repeat:repeat;
     height:100vh;
-    margin-top:0px;
+    margin-top:-50px;
     padding-top:-20px;
     z-index:2;
 }
