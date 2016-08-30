@@ -16,25 +16,53 @@
     <div class="form-horizontal">
         <h4>Review</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         @*Choose Positive or Negative Review*@
         <div class="form-group">
-            @Html.Label("Positive/Negative", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <span>Positive&nbsp;</span>@Html.RadioButtonFor(x => x.ReviewType, "1", new { htmlAttributes = new { @class = "form-control" } })
-                <span>&nbsp;&nbsp;&nbsp; Negative&nbsp;</span>@Html.RadioButtonFor(x => x.ReviewType, "2", new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-offset-2 col-md-10">
+                <div id="review-type" class="btn-group" data-toggle="buttons">
+                    <label class="pdsa-radiobutton btn btn-primary active rType-positive">
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                        @Html.RadioButton("ReviewType", 1, new { id = "isPositive" })Positive
+                    </label>
+                    <label class="pdsa-radiobutton btn btn-danger rType-negative">
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                        @Html.RadioButton("ReviewType", 2, new { id = "isNegative" })Negative
+                    </label>
+                </div>
+                @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
             </div>
-            @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
         </div>
 
+        @*Choose Anonymous or Display Username*@
         <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div id="privacy" class="btn-group" data-toggle="buttons">
+                    <label class="pdsa-radiobutton btn btn-primary active rType-positive">
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                        @Html.RadioButton("isAnonymous", true, new { id = "isAnonymous" })Anonymous
+                    </label>
+                    <label class="pdsa-radiobutton btn btn-primary rType-negative">
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                        @Html.RadioButton("isAnonymous", false, new { id = "isNotAnonymous" })Display Username
+                    </label>
+                </div>
+                @Html.ValidationMessageFor(model => model.ReviewType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        @*Choose if name is displayed or "anonymous" is displayed*@
+        @*<div class="form-group">
             @Html.Label("Privacy", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <span>Anonymous&nbsp;</span>@Html.RadioButtonFor(x => x.IsAnonymous, true, new { htmlAttributes = new { @class = "form-control" } })
                 <span>&nbsp;&nbsp;&nbsp; Display username&nbsp;</span>@Html.RadioButtonFor(x => x.IsAnonymous, false, new { htmlAttributes = new { @class = "form-control" } })
             </div>
-        </div>
+        </div>*@
+
         @*Creates an empty label to enter officer name and passes it to Reviews Controller*@
         <div class="form-group">
             @Html.Label("Officer Name", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -115,7 +143,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-}
+
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFhq8GA9eLgA_Tc7CnME6a0JYjC75B2U0&callback=getLocation"
@@ -198,3 +226,59 @@
         }
     }
 </script>
+
+<script>
+  $(document).ready(function () {
+    $("#review-type > .pdsa-radiobutton").on('click', function () {
+      pdsaToggleRadioButtons("#review-type", $(this));
+    });
+  });
+
+  function pdsaToggleRadioButtons(groupName, current) {
+    // Find currently checked radio button in the group
+    var chk = $(groupName +
+       " .pdsa-radiobutton .glyphicon-check");
+    var input = $("input", current);
+    input.prop("checked", true);
+    console.log(input.prop('checked'));
+    console.log(input);
+
+    // Remove 'record' glyph
+    // Add 'unchecked' glyph
+    $(chk).removeClass('glyphicon-check')
+          .addClass('glyphicon-unchecked');
+
+    // Remove the 'unchecked' glyph, add the 'record' glyph
+    $(current).find(">:first-child")
+      .removeClass('glyphicon-unchecked');
+    $(current).find(">:first-child")
+      .addClass('glyphicon-check');
+  }
+</script>
+
+<script>
+  $(document).ready(function () {
+    $("#privacy > .pdsa-radiobutton").on('click', function () {
+      pdsaToggleRadioButtons("#privacy", $(this));
+    });
+  });
+
+  //function pdsaToggleRadioButtons(groupName, current) {
+  //  // Find currently checked radio button in the group
+  //  var chk = $(groupName +
+  //     " .pdsa-radiobutton .glyphicon-check");
+
+  //  // Remove 'record' glyph
+  //  // Add 'unchecked' glyph
+  //  $(chk).removeClass('glyphicon-check')
+  //        .addClass('glyphicon-unchecked');
+
+  //  // Remove the 'unchecked' glyph, add the 'record' glyph
+  //  $(current).find(">:first-child")
+  //    .removeClass('glyphicon-unchecked');
+  //  $(current).find(">:first-child")
+  //    .addClass('glyphicon-check');
+  //}
+</script>
+
+    }
