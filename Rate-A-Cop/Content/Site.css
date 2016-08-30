@@ -145,11 +145,22 @@ h1, h2, h3, p{
 /*.collapsing ul li a, .in ul li a {color: #555!important;}*/
 .collapsing ul li a:hover, .in ul li a:hover {color: #f1f1f1!important;}
 }
-.rType-positive{
-    border-radius:4px 4px 4px 4px !important;
+.col-sm-6{
+    color: white;
+    font-style: italic;
+    font-family:  Roboto, sans-serif;
 }
-.rType-negative{
-    margin-left:20px !important;
-    border-radius:4px 4px 4px 4px !important;
+.searchbar {
+    color: white;
+    font-style: italic;
+    font-family:  Roboto, sans-serif;
 }
+.table {
+    color: white;
+    font-style: italic;
+    font-family:  Roboto, sans-serif;
+}
+
+
+
 
