@@ -8,12 +8,13 @@
 
 <div class="row">
     <div class="col-sm-3"></div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 create-form">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(x => x.Lattitude)
             @Html.HiddenFor(x => x.Longitude)
+            @Html.HiddenFor(x => x.ReviewDateTime)
 
             <div class="form-horizontal">
                 <h4>Review</h4>
@@ -75,7 +76,7 @@
 
                 @*Creates an empty label to enter officer badge number and passes it to Reviews Controller*@
                 <div class="form-group">
-                    @Html.Label("Badge Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Badge #", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.Editor("BadgeNumber", new { htmlAttributes = new { @class = "form-control" } })
                     </div>
@@ -100,15 +101,16 @@
 
 
 
-                <div class="form-group">
+                @*<div class="form-group">
                     @Html.LabelFor(model => model.ReviewTimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("City", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @*@Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })*@
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
@@ -128,6 +130,7 @@
                 <div id="maps">
 
                 </div>
+                <h3>Move pin to record the location of your incident</h3>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Create" class="btn btn-default" />
@@ -139,9 +142,9 @@
 
 
 
-        <div>
+        @*<div>
             @Html.ActionLink("Back to List", "Index")
-        </div>
+        </div>*@
 
         </div>
     </div>

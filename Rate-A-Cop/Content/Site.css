@@ -155,5 +155,10 @@ h1, h2, h3, p{
 #mapholder{
     display:block;
     margin:auto;
+    width:50% !important;
+}
+.create-form{
+    color: white;
+    font-family:  Roboto, sans-serif;
 }
 
