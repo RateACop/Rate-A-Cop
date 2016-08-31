@@ -137,10 +137,10 @@
         </header>
         
         @* -------------------- Display date and time when the review was posted -------------------- *@
-        <div class="w3-container">
+        <div class="w3-container time-stamp">
 
-            @Html.DisplayFor(modelItem => item.ReviewDateTime)
-            <hr class="w3-border-bottom w3-border-black">
+            <p class="card-time-stamp-p">@Html.DisplayFor(modelItem => item.ReviewDateTime)</p>
+            <hr class="w3-border-bottom w3-border-black card-hr">
 
             @* -------------------- Display officer's name -------------------- *@
             <h5><strong>Officer: </strong><a class="officer-name-link" href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">@Html.DisplayFor(modelItem => item.Officer.OfficerName)</a></h5>
