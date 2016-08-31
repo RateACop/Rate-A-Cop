@@ -12,7 +12,7 @@
             <a href=@Url.Action("Create", "Reviews")><span class="btn btn-default">Create New Review</span></a>
         </p>
 
-        <table class="table">
+        @*<table class="table">
             <tr>
                 <th>
                     Posted On:
@@ -88,19 +88,19 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.ReviewTimeStamp)
                     </td>
-                    @*<td>
+                    <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.ReviewID }) |
                         @Html.ActionLink("Details", "Details", new { id = item.ReviewID }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.ReviewID })
-                    </td>*@
+                    </td>
                 </tr>
             }
 
-        </table>
+        </table>*@
     </div>
 </div>
 
-<body class="w3-container">
+@*<body class="w3-container">
 
     <h2></h2>
     <div class="w3-card-4 w3-section w3-pale-blue w3-leftbar w3-rightbar w3-topbar w3-bottombar w3-border-grey w3-hover-border-red w3-section w3-border w3-round-xlarge" style="width:70%">
@@ -115,7 +115,7 @@
         </div>
         <button class="w3-btn-block w3-lime green">Read More</button>
     </div>
-</body>
+</body>*@
 
 
 <body class="w3-container">
@@ -123,6 +123,8 @@
 {
     <h2></h2>
     <div class="w3-card-4 w3-section w3-pale-blue w3-leftbar w3-rightbar w3-topbar w3-bottombar w3-border-grey w3-hover-border-red w3-section w3-border w3-round-xlarge" style="width:70%; margin:auto;">
+
+        @* -------------------- Display Anonymous or Display Username -------------------- *@
         <header class="w3-container w3-black">
             @if (item.IsAnonymous == true)
             {
@@ -133,13 +135,26 @@
                 <h4><span>@Html.DisplayFor(modelItem => item.ApplicationUser.UserName)</span></h4>
             }
         </header>
+        
+        @* -------------------- Display date and time when the review was posted -------------------- *@
         <div class="w3-container">
+
             @Html.DisplayFor(modelItem => item.ReviewDateTime)
             <hr class="w3-border-bottom w3-border-black">
+
+            @* -------------------- Display officer's name -------------------- *@
             <h5><strong>Officer: </strong><a class="officer-name-link" href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">@Html.DisplayFor(modelItem => item.Officer.OfficerName)</a></h5>
+
+            @* -------------------- Display officer's badge number -------------------- *@
             <h5><strong>Badge Number: </strong>@Html.DisplayFor(modelItem => item.Officer.BadgeNumber)</h5>
+
+            @* -------------------- Display location of the incident -------------------- *@
             <h5><strong>City: </strong>@Html.DisplayFor(modelItem => item.Location)</h5>
+
+            @* -------------------- Display date and time of the incident -------------------- *@
             <h5><strong>Date & Time: </strong>@Html.DisplayFor(modelItem => item.ReviewTimeStamp)</h5>
+
+            @* -------------------- Display thumbs up or thumbs down glyphicons -------------------- *@
             @if (item.ReviewType == 1)
             {
                 <img src="~/Images/thumbs-up-icon-blue-clip-art.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />
@@ -152,12 +167,11 @@
             {
                 @Html.DisplayFor(modelItem => item.ReviewType)
             }
-            @*<img src="~/Images/thumbs-up-icon-blue-clip-art.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />*@
-            @*<img src="http://www.iconsplace.com/icons/preview/red/thumbs-down-256.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">*@
+
+            @* -------------------- Display Text Review -------------------- *@
             <p>@Html.DisplayFor(modelItem => item.ReviewText)</p>
         </div>
         <button class="btn btn-block"><a class="officer-name-link" href="@Url.Action("Details", "Reviews", new { id=item.ReviewID })">Read More</a></button>
-            @*<button class="btn btn-block">Read More</button>*@
 </div>
 }
 </body>
