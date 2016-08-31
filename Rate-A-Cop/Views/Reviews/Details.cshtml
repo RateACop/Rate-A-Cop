@@ -52,6 +52,8 @@
 <body class="w3-container">
         <h2></h2>
         <div class="w3-card-4 w3-section w3-pale-blue w3-leftbar w3-rightbar w3-topbar w3-bottombar w3-border-grey w3-hover-border-red w3-section w3-border w3-round-xlarge" style="width:70%; margin:auto;">
+
+            @* -------------------- Display Anonymous or Display Username -------------------- *@
             <header class="w3-container w3-black">
                 @if (Model.IsAnonymous == true)
                 {
@@ -62,12 +64,25 @@
                     <h4><span>@Html.DisplayFor(modelItem => Model.ApplicationUser.UserName)</span></h4>
                 }
             </header>
-            <div class="w3-container">
-                @Html.DisplayFor(modelItem => modelItem.ReviewDateTime)
-                <hr class="w3-border-bottom w3-border-black">
+
+            @* -------------------- Display date and time when the review was posted -------------------- *@
+            <div class="w3-container time-stamp">
+                <p class="card-time-stamp-p">@Html.DisplayFor(modelItem => modelItem.ReviewDateTime)</p>
+                <hr class="w3-border-bottom w3-border-black card-hr">
+
+                @* -------------------- Display officer's name -------------------- *@
                 <h5><strong>Officer: </strong><a class="officer-name-link" href="@Url.Action("Details", "Officers", new { id=Model.Officer.OfficerID })">@Html.DisplayFor(modelItem => modelItem.Officer.OfficerName)</a></h5>
+
+                @* -------------------- Display officer's badge number -------------------- *@
                 <h5><strong>Badge Number: </strong>@Html.DisplayFor(modelItem => Model.Officer.BadgeNumber)</h5>
+
+                @* -------------------- Display location (City) of the incident -------------------- *@
                 <h5><strong>City: </strong>@Html.DisplayFor(modelItem => modelItem.Location)</h5>
+
+                @* -------------------- Display date and time of the incident -------------------- *@
+                <h5><strong>Date & Time: </strong>@Html.DisplayFor(modelItem => modelItem.ReviewTimeStamp)</h5>
+
+                @* -------------------- Display thumbs up or thumbs down glyphicons -------------------- *@
                 @if (Model.ReviewType == 1)
                 {
                     <img src="~/Images/thumbs-up-icon-blue-clip-art.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />
@@ -80,9 +95,9 @@
                 {
                     @Html.DisplayFor(model => model.ReviewText)
                 }
-                @*<img src="~/Images/thumbs-up-icon-blue-clip-art.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />*@
-                @*<img src="http://www.iconsplace.com/icons/preview/red/thumbs-down-256.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">*@
-                <p>@Html.DisplayFor(modelItem => modelItem.ReviewText)</p>
+
+                @* -------------------- Display Text Review -------------------- *@
+<p>@Html.DisplayFor(modelItem => modelItem.ReviewText)</p>
             </div>
 
             <button class="btn btn-block" onclick="goBack()">Back to Reviews</button>

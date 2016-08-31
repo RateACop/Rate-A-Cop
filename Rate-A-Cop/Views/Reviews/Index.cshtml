@@ -148,7 +148,7 @@
             @* -------------------- Display officer's badge number -------------------- *@
             <h5><strong>Badge Number: </strong>@Html.DisplayFor(modelItem => item.Officer.BadgeNumber)</h5>
 
-            @* -------------------- Display location of the incident -------------------- *@
+            @* -------------------- Display location (City) of the incident -------------------- *@
             <h5><strong>City: </strong>@Html.DisplayFor(modelItem => item.Location)</h5>
 
             @* -------------------- Display date and time of the incident -------------------- *@
@@ -171,6 +171,8 @@
             @* -------------------- Display Text Review -------------------- *@
             <p>@Html.DisplayFor(modelItem => item.ReviewText)</p>
         </div>
+
+        @* ---------------- Read More button. Takes user to details(reviewID) view --------------- *@
         <button class="btn btn-block"><a class="officer-name-link" href="@Url.Action("Details", "Reviews", new { id=item.ReviewID })">Read More</a></button>
 </div>
 }
