@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+
 
 <div class="row">
     <div class="col-sm-3"></div>
@@ -17,8 +17,8 @@
             @Html.HiddenFor(x => x.ReviewDateTime)
 
             <div class="form-horizontal">
-                <h4>Review</h4>
-                <hr />
+                <h4>Post A Review</h4>
+
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 @*Choose Positive or Negative Review*@
@@ -102,12 +102,12 @@
 
 
                 @*<div class="form-group">
-                    @Html.LabelFor(model => model.ReviewTimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+                        @Html.LabelFor(model => model.ReviewTimeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ReviewTimeStamp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReviewTimeStamp, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
                 <div class="form-group">
                     @Html.Label("City", htmlAttributes: new { @class = "control-label col-md-2" })
                     @*@Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })*@
@@ -126,165 +126,170 @@
                     </div>
                 </div>
 
+           
+          
+                    <h3>Move pin to record the location of your incident</h3>
+                <div id="mapholder"></div>
+                <div>&nbsp;</div>
 
-                <div id="maps">
 
-                </div>
-                <h3>Move pin to record the location of your incident</h3>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                    <div class="col-md-12">
+                    <input type="submit" value="Create" class="btn btn-default" />
                     </div>
                 </div>
-            </div>
+                </div>
         }
 
 
+        
 
-
-        @*<div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>*@
+            @*<div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>*@
 
         </div>
     </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
 
 
+    
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFhq8GA9eLgA_Tc7CnME6a0JYjC75B2U0&callback=getLocation"
+            async defer></script>
 
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFhq8GA9eLgA_Tc7CnME6a0JYjC75B2U0&callback=getLocation"
-                    async defer></script>
+    @*displays map and markers accordingly after running all code below*@
+    
+      
+    <script>
+        //Finds users initial location based on device location
+        var x = document.getElementById("demo");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
 
-            @*displays map and markers accordingly after running all code below*@
-            <div id="mapholder"></div>
+        function showPosition(position) {
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+            latlon = new google.maps.LatLng(lat, lon)
+            mapholder = document.getElementById('mapholder')
+            mapholder.style.height = '250px';
+            //mapholder.style.width = '500px';
 
-            <script>
-                //Finds users initial location based on device location
-                var x = document.getElementById("demo");
-                function getLocation() {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(showPosition, showError);
-                    } else {
-                        x.innerHTML = "Geolocation is not supported by this browser.";
-                    }
-                }
+            //Pulls initial values from above function and displays them in Lat/Long boxes
 
-                function showPosition(position) {
-                    lat = position.coords.latitude;
-                    lon = position.coords.longitude;
-                    latlon = new google.maps.LatLng(lat, lon)
-                    mapholder = document.getElementById('mapholder')
-                    mapholder.style.height = '250px';
-                    mapholder.style.width = '500px';
+            document.getElementById("Lattitude").value = lat;
+            document.getElementById("Longitude").value = lon;
 
-                    //Pulls initial values from above function and displays them in Lat/Long boxes
+            //Finds user designated location by allowing user to drag pin/marker on map. overrides initial location
 
-                    document.getElementById("Lattitude").value = lat;
-                    document.getElementById("Longitude").value = lon;
+            //Allows tweaking of map details and presentation (I think)
+            var myOptions = {
+                center: latlon, zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
+                navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL }
+            }
 
-                    //Finds user designated location by allowing user to drag pin/marker on map. overrides initial location
+            var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+            //Code for marker and ability to drag marker to designate place
+            var marker = new google.maps.Marker({
+                position: latlon,
+                map: map,
+                draggable: true,
+                title: "You are here!"
+            });
+            google.maps.event.addListener(marker, 'dragend', function (a) {
+                console.log(a);
+                var ulat = a.latLng.lat();
+                var ulon = a.latLng.lng();
+                console.log(ulat);
+                console.log(ulon);
 
-                    //Allows tweaking of map details and presentation (I think)
-                    var myOptions = {
-                        center: latlon, zoom: 14,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP,
-                        mapTypeControl: false,
-                        navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL }
-                    }
+                //Pulls user selected values from above function and displays them in Lat/Long boxes
+                document.getElementById("Lattitude").value = ulat;
+                document.getElementById("Longitude").value = ulon;
+            });
 
-                    var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
-                    //Code for marker and ability to drag marker to designate place
-                    var marker = new google.maps.Marker({
-                        position: latlon,
-                        map: map,
-                        draggable: true,
-                        title: "You are here!"
-                    });
-                    google.maps.event.addListener(marker, 'dragend', function (a) {
-                        console.log(a);
-                        var ulat = a.latLng.lat();
-                        var ulon = a.latLng.lng();
-                        console.log(ulat);
-                        console.log(ulon);
-
-                        //Pulls user selected values from above function and displays them in Lat/Long boxes
-                        document.getElementById("Lattitude").value = ulat;
-                        document.getElementById("Longitude").value = ulon;
-                    });
-
-
-                }
-                //Error related code when user has no location or denies access
-                function showError(error) {
-                    switch (error.code) {
-                        case error.PERMISSION_DENIED:
-                            x.innerHTML = "User denied the request for Geolocation."
-                            break;
-                        case error.POSITION_UNAVAILABLE:
-                            x.innerHTML = "Location information is unavailable."
-                            break;
-                        case error.TIMEOUT:
-                            x.innerHTML = "The request to get user location timed out."
-                            break;
-                        case error.UNKNOWN_ERROR:
-                            x.innerHTML = "An unknown error occurred."
-                            break;
-                    }
-                }
-            </script>
-
-            <script>
-                $(document).ready(function () {
-                    $("#review-type > .pdsa-radiobutton").on('click', function () {
-                        pdsaToggleRadioButtons("#review-type", $(this));
-                    });
-                });
-
-                function pdsaToggleRadioButtons(groupName, current) {
-                    // Find currently checked radio button in the group
-                    var chk = $(groupName +
-                       " .pdsa-radiobutton .glyphicon-check");
-                    var input = $("input", current);
-
-                    // Remove 'record' glyph
-                    // Add 'unchecked' glyph
-                    $(chk).removeClass('glyphicon-check')
-                          .addClass('glyphicon-unchecked');
-
-                    // Remove the 'unchecked' glyph, add the 'record' glyph
-                    $(current).find(">:first-child")
-                      .removeClass('glyphicon-unchecked');
-                    $(current).find(">:first-child")
-                      .addClass('glyphicon-check');
-                }
-            </script>
-
-            <script>
-                $(document).ready(function () {
-                    $("#privacy > .pdsa-radiobutton").on('click', function () {
-                        pdsaToggleRadioButtons("#privacy", $(this));
-                    });
-                });
-
-                //function pdsaToggleRadioButtons(groupName, current) {
-                //  // Find currently checked radio button in the group
-                //  var chk = $(groupName +
-                //     " .pdsa-radiobutton .glyphicon-check");
-
-                //  // Remove 'record' glyph
-                //  // Add 'unchecked' glyph
-                //  $(chk).removeClass('glyphicon-check')
-                //        .addClass('glyphicon-unchecked');
-
-                //  // Remove the 'unchecked' glyph, add the 'record' glyph
-                //  $(current).find(">:first-child")
-                //    .removeClass('glyphicon-unchecked');
-                //  $(current).find(">:first-child")
-                //    .addClass('glyphicon-check');
-                //}
-            </script>
 
         }
+        //Error related code when user has no location or denies access
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    x.innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    x.innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    x.innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    x.innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#review-type > .pdsa-radiobutton").on('click', function () {
+                pdsaToggleRadioButtons("#review-type", $(this));
+            });
+        });
+
+        function pdsaToggleRadioButtons(groupName, current) {
+            // Find currently checked radio button in the group
+            var chk = $(groupName +
+               " .pdsa-radiobutton .glyphicon-check");
+            var input = $("input", current);
+            input.prop("checked", true);
+            console.log(input.prop('checked'));
+            console.log(input);
+
+            // Remove 'record' glyph
+            // Add 'unchecked' glyph
+            $(chk).removeClass('glyphicon-check')
+                  .addClass('glyphicon-unchecked');
+
+            // Remove the 'unchecked' glyph, add the 'record' glyph
+            $(current).find(">:first-child")
+              .removeClass('glyphicon-unchecked');
+            $(current).find(">:first-child")
+              .addClass('glyphicon-check');
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#privacy > .pdsa-radiobutton").on('click', function () {
+                pdsaToggleRadioButtons("#privacy", $(this));
+            });
+        });
+
+        //function pdsaToggleRadioButtons(groupName, current) {
+        //  // Find currently checked radio button in the group
+        //  var chk = $(groupName +
+        //     " .pdsa-radiobutton .glyphicon-check");
+
+        //  // Remove 'record' glyph
+        //  // Add 'unchecked' glyph
+        //  $(chk).removeClass('glyphicon-check')
+        //        .addClass('glyphicon-unchecked');
+
+        //  // Remove the 'unchecked' glyph, add the 'record' glyph
+        //  $(current).find(">:first-child")
+        //    .removeClass('glyphicon-unchecked');
+        //  $(current).find(">:first-child")
+        //    .addClass('glyphicon-check');
+        //}
+    </script>
+
+    }
