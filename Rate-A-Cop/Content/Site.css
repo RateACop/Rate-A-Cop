@@ -171,6 +171,14 @@ h1, h2, h3, p{
     border-radius:0 0 10px 10px;
     background-color:#D1D3D5;
 }
+.read-more{
+    color:Black;
+    margin-top:3px;
+    margin-bottom:3px;
+}
+.no-underline{
+    text-decoration:none !important;
+}
 /*--------------- Card time stamp and </hr> ---------------*/
 .time-stamp{
     padding:16px 16px 0.01px 16px !important;
