@@ -201,6 +201,11 @@ h1, h2, h3, p{
 .text-white{
     color:white;
 }
+
+.tips-btn-text{
+    letter-spacing:5px;
+    font-size:2em;
+}
 /*----------------------------------------------------------*/
 
 
