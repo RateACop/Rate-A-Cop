@@ -70,11 +70,10 @@ namespace Rate_A_Cop.Controllers
                                select item;
                     break;
             }
-            int pageSize = 3;
+            int pageSize = 15;
             int pageNumber = (page ?? 1);
             return View(officers.ToPagedList(pageNumber, pageSize));
 
-            return View(officers);
         }
 
         // GET: Officers/Details/5
