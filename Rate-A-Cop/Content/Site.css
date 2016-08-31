@@ -167,6 +167,10 @@ h1, h2, h3, p{
 .btn btn_default{
     display: block !important
 }
+.btn-block{
+    border-radius:0 0 10px 10px;
+    background-color:#D1D3D5;
+}
 
 
 /*----------------------------------------- w3Schools css---------------------------------------------*/
@@ -339,7 +343,11 @@ h1, h2, h3, p{
 .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#009688!important}
 .w3-yellow,.w3-hover-yellow:hover{color:#000!important;background-color:#ffeb3b!important}
 .w3-white,.w3-hover-white:hover{color:#000!important;background-color:#fff!important}
-.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#03030B!important}
+
+/* -------------------- Top stripe in cards: changed background color to match navbar and added rounded top corners--------------------*/
+.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#03030B!important; border-radius:10px 10px 0px 0px;}
+
+
 .w3-grey,.w3-hover-grey:hover{color:#000!important;background-color:#9e9e9e!important}
 .w3-light-grey,.w3-hover-light-grey:hover{color:#000!important;background-color:#f1f1f1!important}
 .w3-dark-grey,.w3-hover-dark-grey:hover{color:#fff!important;background-color:#616161!important}
