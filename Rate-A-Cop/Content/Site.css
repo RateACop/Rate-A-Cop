@@ -145,6 +145,9 @@ h1, h2, h3, p{
 /*.collapsing ul li a, .in ul li a {color: #555!important;}*/
 .collapsing ul li a:hover, .in ul li a:hover {color: #f1f1f1!important;}
 }
+        /*-------------- END mobile nav bar colors ---------------*/
+
+
 .rType-positive{
     border-radius:4px 4px 4px 4px !important;
 }
@@ -162,7 +165,10 @@ h1, h2, h3, p{
     font-family:  Roboto, sans-serif;
 }
 
-/*------------------------------- w3Schools css-----------------------------------*/
+
+/*----------------------------------------- w3Schools css---------------------------------------------*/
+            /*--------------------- Used for Reviews-Index Cards ----------------------*/
+
 {content:"";display:table;clear:both}
 .w3-col,.w3-half,.w3-third,.w3-twothird,.w3-threequarter,.w3-quarter{float:left;width:100%}
 .w3-col.s1{width:8.33333%}

@@ -136,15 +136,28 @@
         <div class="w3-container">
             @Html.DisplayFor(modelItem => item.ReviewDateTime)
             <hr class="w3-border-bottom w3-border-black">
-            <h5><strong>Officer: </strong><a class="officer-name-link" href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">
-    @Html.DisplayFor(modelItem => item.Officer.OfficerName)</a></h5>
+            <h5><strong>Officer: </strong><a class="officer-name-link" href="@Url.Action("Details", "Officers", new { id=item.Officer.OfficerID })">@Html.DisplayFor(modelItem => item.Officer.OfficerName)</a></h5>
             <h5><strong>Badge Number: </strong>@Html.DisplayFor(modelItem => item.Officer.BadgeNumber)</h5>
             <h5><strong>City: </strong>@Html.DisplayFor(modelItem => item.Location)</h5>
-            <img src="~/Images/thumbs-up-icon-blue-clip-art.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />
+            <h5><strong>Date & Time: </strong>@Html.DisplayFor(modelItem => item.ReviewTimeStamp)</h5>
+            @if (item.ReviewType == 1)
+            {
+                <img src="~/Images/thumbs-up-icon-blue-clip-art.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />
+            }
+            else if (item.ReviewType == 2)
+            {
+                <img src="~/Images/13476359851958638477thumbs-down-icon-red-hi-md.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.ReviewType)
+            }
+            @*<img src="~/Images/thumbs-up-icon-blue-clip-art.png" alt="Thumbs-Up" class="w3-left w3-margin-right w3-margin-bottom" style="width:40px" />*@
             @*<img src="http://www.iconsplace.com/icons/preview/red/thumbs-down-256.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">*@
             <p>@Html.DisplayFor(modelItem => item.ReviewText)</p>
         </div>
-        <button class="w3-btn-block w3-lime green">Read More</button>
-    </div>
+        <button class="btn btn-block"><a class="officer-name-link" href="@Url.Action("Details", "Reviews", new { id=item.ReviewID })">Read More</a></button>
+            @*<button class="btn btn-block">Read More</button>*@
+</div>
 }
 </body>
