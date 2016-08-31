@@ -130,12 +130,16 @@
             {
                 <h4><span>Anonymous</span></h4>
             }
+            else if (item.ApplicationUser == null)
+            {
+                <h4><span>Unregistered User</span></h4>
+            }
             else
             {
                 <h4><span>@Html.DisplayFor(modelItem => item.ApplicationUser.UserName)</span></h4>
             }
         </header>
-        
+
         @* -------------------- Display date and time when the review was posted -------------------- *@
         <div class="w3-container time-stamp">
 
