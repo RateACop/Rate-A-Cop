@@ -74,6 +74,7 @@ namespace Rate_A_Cop.Controllers
             int pageNumber = (page ?? 1);
             return View(officers.ToPagedList(pageNumber, pageSize));
 
+            return View(officers);
         }
 
         // GET: Officers/Details/5

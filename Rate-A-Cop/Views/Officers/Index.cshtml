@@ -11,7 +11,7 @@
 
     <h2>Officers</h2>
 
-    @using (Html.BeginForm("Index", "Officer", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Officers", FormMethod.Get))
     {
         <p class="searchbar">
             Search for: @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
