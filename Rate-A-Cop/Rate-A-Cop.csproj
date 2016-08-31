@@ -247,11 +247,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\13476359851958638477thumbs-down-icon-red-hi-md.png" />
     <Content Include="Images\bg-overlay.png" />
     <Content Include="Images\lights-top-gradient-2.jpg" />
     <Content Include="Images\lights-top-gradient.jpg" />
     <Content Include="Images\lights.jpg" />
     <Content Include="Images\lights2.jpg" />
+    <Content Include="Images\thumbs-up-icon-blue-clip-art.png" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="fonts\FjallaOne-Regular.ttf" />

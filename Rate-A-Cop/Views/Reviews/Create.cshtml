@@ -141,9 +141,6 @@
                 </div>
         }
 
-
-        
-
             @*<div>
                     @Html.ActionLink("Back to List", "Index")
                 </div>*@
@@ -154,9 +151,6 @@
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
 
-
-    
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFhq8GA9eLgA_Tc7CnME6a0JYjC75B2U0&callback=getLocation"
             async defer></script>
 
@@ -164,7 +158,7 @@
     
       
     <script>
-        //Finds users initial location based on device location
+        //Finds users initial location based on device location        
         var x = document.getElementById("demo");
         function getLocation() {
             if (navigator.geolocation) {
@@ -274,22 +268,6 @@
             });
         });
 
-        //function pdsaToggleRadioButtons(groupName, current) {
-        //  // Find currently checked radio button in the group
-        //  var chk = $(groupName +
-        //     " .pdsa-radiobutton .glyphicon-check");
-
-        //  // Remove 'record' glyph
-        //  // Add 'unchecked' glyph
-        //  $(chk).removeClass('glyphicon-check')
-        //        .addClass('glyphicon-unchecked');
-
-        //  // Remove the 'unchecked' glyph, add the 'record' glyph
-        //  $(current).find(">:first-child")
-        //    .removeClass('glyphicon-unchecked');
-        //  $(current).find(">:first-child")
-        //    .addClass('glyphicon-check');
-        //}
     </script>
 
     }
