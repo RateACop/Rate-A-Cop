@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Rate_A_Cop.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 
 namespace Rate_A_Cop.Controllers
 {
@@ -28,10 +29,30 @@ namespace Rate_A_Cop.Controllers
         }
 
         // GET: Reviews
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-           // var officer = db.Officers.Include(x => x.OfficerName);
+            ViewBag.CurrentSort = sortOrder;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var reviews = from item in db.Reviews
+                           select item;
+
+            // var officer = db.Officers.Include(x => x.OfficerName);
             return View(db.Reviews.ToList());
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(reviews.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Reviews/Details/5

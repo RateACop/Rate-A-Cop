@@ -1,12 +1,14 @@
-﻿@model IEnumerable<Rate_A_Cop.Models.Review>
+﻿@model PagedList.IPagedList<Rate_A_Cop.Models.Review>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Reviews";
 }
 <div class="reviews-index container">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         
-        <h2>Index</h2>
+        <h2>Reviews</h2>
 
         <p>
             <a href=@Url.Action("Create", "Reviews")><span class="btn btn-default">Create New Review</span></a>
@@ -181,3 +183,9 @@
 </div>
 }
 </body>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
