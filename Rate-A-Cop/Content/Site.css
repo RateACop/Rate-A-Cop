@@ -175,11 +175,18 @@ h1, h2, h3, p{
     color:Black;
     margin-top:3px;
     margin-bottom:3px;
+    letter-spacing:5px;
+    -webkit-transition:all 0.3s;
+}
+.read-more:hover{
+    -webkit-transform:scale(1.1);
+    transform:scale(1.1);
 }
 .no-underline{
     text-decoration:none !important;
+    -webkit-transition:all 0.3s;
 }
-/*--------------- Card time stamp and </hr> ---------------*/
+/*--------------- Cards: time stamp, </hr>, h2 ---------------*/
 .time-stamp{
     padding:16px 16px 0.01px 16px !important;
 }
@@ -190,6 +197,9 @@ h1, h2, h3, p{
 .card-time-stamp-p{
     margin-bottom:2px;
     color: dimgray;
+}
+.text-white{
+    color:white;
 }
 /*----------------------------------------------------------*/
 
