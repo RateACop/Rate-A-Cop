@@ -84,6 +84,15 @@
                 @*<img src="http://www.iconsplace.com/icons/preview/red/thumbs-down-256.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">*@
                 <p>@Html.DisplayFor(modelItem => modelItem.ReviewText)</p>
             </div>
-            <button class="btn btn-block"></button>
+
+            <button class="btn btn-block" onclick="goBack()">Back to Reviews</button>
+
+            @* ---------------- Back button script takes user back to same spot in reviews page --------------- *@
+            <script>
+                function goBack() {
+                window.history.back();
+                }
+            </script>
+
         </div>
 </body>
