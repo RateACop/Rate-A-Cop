@@ -499,3 +499,26 @@ margin-left:0 !important;
 .new-user{
     margin-left:10px;
 }
+.index-btn{
+    margin-top:20px !important;
+    margin-bottom:20px;
+    padding-top:20px;
+    padding-bottom:20px;
+    border-radius:0px;
+}
+.index-border{
+    padding-left:20px;
+    padding-right:20px;
+    border:1px solid;
+    border-color:rgba(255,255,255,.2);
+}
+.modal-text{
+    font-family:  Roboto, sans-serif; 
+    letter-spacing:1px;
+}
+.modal-header-text{
+    font-family:'FjallaOne-Regular';
+}
+.modal-btn{
+    color:black;
+}
