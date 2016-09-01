@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Rate_A_Cop.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 
 namespace Rate_A_Cop.Controllers
 {
@@ -28,9 +29,77 @@ namespace Rate_A_Cop.Controllers
         }
 
         // GET: Reviews
-        public ActionResult Index()
+        public ActionResult Index(string sortColumn, string currentFilter, string searchString, int? page)
         {
-           // var officer = db.Officers.Include(x => x.OfficerName);
+            // var officer = db.Officers.Include(x => x.OfficerName);
+
+            // Pagination
+            ViewBag.CurrentSort = sortColumn;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+
+            // Search bar
+            var reviews = from item in db.Reviews
+                           select item;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                reviews = from item in reviews
+                           where item.ReviewDateTime.ToString().Contains(searchString) 
+                                 //item.ReviewTimeStamp.Contains(searchString)
+                           select item;
+            }
+
+            // Display names in alphabetical oder (Asc or Desc)
+            switch (sortColumn)
+            {
+                //case "FirstName":
+                //    reviews = from item in reviews
+                //               orderby item.ReviewDateTime.ToLongDateString()
+                //               select item;
+                //    break;
+                case "PostDate":
+                    reviews = from item in reviews
+                              orderby item.ReviewDateTime.ToLongDateString()
+                              select item;
+                    break;
+
+                //case "FirstName":
+                //    reviews = reviews.OrderBy(r => r.ReviewDateTime.ToString());
+                //    break;
+
+
+
+                //case "LastNameRev":
+                //    reviews = from item in reviews
+                //              orderby item.ReviewTimeStamp descending
+                //              select item;
+                //    break;
+
+                case "PostDateRev":
+                default:
+                    reviews = from item in reviews
+                              orderby item.ReviewDateTime descending
+                              select item;
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(reviews.ToPagedList(pageNumber, pageSize));
+
+            return View(reviews);
+
+
             return View(db.Reviews.ToList());
         }
 
@@ -76,7 +145,7 @@ namespace Rate_A_Cop.Controllers
             if (ViewBag.reviewType == 1)
                 review.ReviewType = 1;
 
-            review.ReviewDateTime = DateTime.Now;
+            review.ReviewDateTime = DateTime.Parse(DateTime.Now.ToString());
 
                 review.Officer = officer;
 
