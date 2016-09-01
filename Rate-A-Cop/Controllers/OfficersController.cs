@@ -31,7 +31,6 @@ namespace Rate_A_Cop.Controllers
             }
             
             ViewBag.CurrentFilter = searchString;
-            
 
                        // Search bar
                        var officers = from item in db.Officers
@@ -70,11 +69,11 @@ namespace Rate_A_Cop.Controllers
                                select item;
                     break;
             }
-            int pageSize = 15;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(officers.ToPagedList(pageNumber, pageSize));
 
-            return View(officers);
+            //return View(officers);
         }
 
         // GET: Officers/Details/5

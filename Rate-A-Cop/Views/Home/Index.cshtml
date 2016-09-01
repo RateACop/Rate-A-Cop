@@ -1,50 +1,67 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }<div class="home-page-bg">
-<div class="home-page">
-    <div class="col-lg-12 col-md-12 col-sm-12 col- index">
-        <h1 class="title">DISPATCH</h1>
-        <p class="lead title-p">POLICE OFFICERS REVIEWS</p>
+    <div class="home-page">
+        <div class="col-lg-12 col-md-12 col-sm-12 col- index">
+            <h1 class="title">DISPATCH</h1>
+            <p class="lead title-p">POLICE OFFICER REVIEWS</p>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="index-border">
 
+                    @*Link to create new review page*@
+                    <a href="@Url.Action("create","Reviews")">
+                        <button type="button" class="btn btn-primary btn-lg btn-block create-new index-btn">NEW REVIEW</button>
+                    </a>
 
-        <!-- Large modal -->
-        @*<button type="button" class="btn btn-danger tips-btn" data-toggle="modal" data-target=".bs-example-modal-lg"><span class="tips-btn-text">TIPS</span></button>
+                    @*Link to reviews index*@
+                    <a href="@Url.Action("index","Reviews")">
+                        <button type="button" class="btn btn-default btn-lg btn-block create-new index-btn">LATEST REVIEWS</button>
+                    </a>
 
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
+                    @*Button to trigger YOUR RIGHTS modal*@
+                    <button type="button" class="btn btn-default btn-lg btn-block create-new index-btn" data-toggle="modal" data-target=".bs-example-modal-lg">YOUR RIGHTS</button>
 
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="gridSystemModalLabel">QUICK TIPS WHEN BEING QUESTIONED BY A POLICE OFFICER</h4>
-                    </div>
+                </div>
+            </div>
 
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12 text-left">
-                                <p>1.	Always Keep Your Hands Visible</p>
-                                <p>2.	Do Not Be Confrontational, Let the Officer Lead the Conversation</p>
-                                <p>3.	You Do Not Have to Agree to an Unfounded Search</p>
-                                <p>
-                                    4.	You Have Miranda Rights:
-                                    <ul>
-                                        <li>You have the right to remain silent</li>
-                                        <li>Anything you say can and will be used against you in a court of law</li>
-                                        <li>You have the right to speak to an attorney, and to have an attorney present during any questioning</li>
-                                    </ul>
+            <!-- Large modal -->
 
-                                </p>
-                                <p class="text-center"><a class="btn btn-default" href="https://www.youtube.com/watch?v=eDJrQBwJpqk">Watch a video &raquo;</a></p>
+                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content modal-text">
 
+                            <div class="modal-header modal-header-text">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="gridSystemModalLabel">QUICK TIPS WHEN BEING QUESTIONED BY A POLICE OFFICER</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 text-left">
+                                        <p>1.	Always keep your hands visible</p>
+                                        <p>2.	Don't be confrontational. Let the officer lead the conversation</p>
+                                        <p>3.	You do not have to agree to an unfounded search</p>
+                                        <p>
+                                            4.	You Have Miranda Rights:
+                                            <ul>
+                                                <li>You have the right to remain silent</li>
+                                                <li>Anything you say can and will be used against you in a court of law</li>
+                                                <li>You have the right to speak to an attorney, and to have an attorney present during any questioning</li>
+                                            </ul>
+
+                                        </p>
+                                        <p class="text-center"><a class="btn btn-default create-new modal-btn" href="https://www.youtube.com/watch?v=eDJrQBwJpqk">WATCH VIDEO &raquo;</a></p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default create-new modal-btn" data-dismiss="modal">CLOSE</button>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
-            </div>
-        </div>*@
+        </div>
     </div>
-</div>
 </div>

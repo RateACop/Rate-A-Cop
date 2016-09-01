@@ -9,7 +9,7 @@
 
         <h2>Index</h2>
 
-        <button class="btn btn-default" onclick="goBack()">Back</button>
+        <button class="btn btn-default create-new" onclick="goBack()">BACK</button>
 
         <h4 class="text-white"><b>Officer: </b>@Html.DisplayFor(modelItem => modelItem.OfficerName)</h4>
         <h4 class="text-white"><b>Badge #: </b>@Html.DisplayFor(modelItem => modelItem.BadgeNumber)</h4>
@@ -22,68 +22,10 @@
                 }
         </script>
 
-
-        @*<p>
-            <a href=@Url.Action("Create", "Reviews")><span class="btn btn-default">Create New Review</span></a>
-        </p>*@
     </div>
 </div>
 
-
-
-@*<h2>Officer Details</h2>
-
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            Badge Number
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BadgeNumber)
-        </dd>
-
-        <dt>
-            Officer Name
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OfficerName)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    <a href=@Url.Action("Index", "Reviews")><span class="btn btn-default">Back to Reviews</span></a>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OfficerID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-
-<table class="table">
-    <tr>
-        <th>
-            Officer
-        </th>
-        <th>
-            Review
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Reviews)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Officer.OfficerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReviewText)
-            </td>
-        </tr>
-    }
-
-</table>*@
-
+@*---------------------------------- CARDS ---------------------------------*@
 <body class="w3-container">
 
     @foreach (var item in Model.Reviews)

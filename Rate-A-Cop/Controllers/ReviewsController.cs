@@ -31,8 +31,6 @@ namespace Rate_A_Cop.Controllers
         // GET: Reviews
         public ActionResult Index(string sortColumn, string currentFilter, string searchString, int? page)
         {
-            // var officer = db.Officers.Include(x => x.OfficerName);
-
             // Pagination
             ViewBag.CurrentSort = sortColumn;
 
@@ -47,44 +45,17 @@ namespace Rate_A_Cop.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-
-            // Search bar
+            // Display latest reviews
             var reviews = from item in db.Reviews
                            select item;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                reviews = from item in reviews
-                           where item.ReviewDateTime.ToString().Contains(searchString) 
-                                 //item.ReviewTimeStamp.Contains(searchString)
-                           select item;
-            }
-
-            // Display names in alphabetical oder (Asc or Desc)
             switch (sortColumn)
             {
-                //case "FirstName":
-                //    reviews = from item in reviews
-                //               orderby item.ReviewDateTime.ToLongDateString()
-                //               select item;
-                //    break;
                 case "PostDate":
                     reviews = from item in reviews
                               orderby item.ReviewDateTime.ToLongDateString()
                               select item;
                     break;
-
-                //case "FirstName":
-                //    reviews = reviews.OrderBy(r => r.ReviewDateTime.ToString());
-                //    break;
-
-
-
-                //case "LastNameRev":
-                //    reviews = from item in reviews
-                //              orderby item.ReviewTimeStamp descending
-                //              select item;
-                //    break;
 
                 case "PostDateRev":
                 default:
@@ -98,7 +69,6 @@ namespace Rate_A_Cop.Controllers
             return View(reviews.ToPagedList(pageNumber, pageSize));
 
             return View(reviews);
-
 
             return View(db.Reviews.ToList());
         }
@@ -159,70 +129,78 @@ namespace Rate_A_Cop.Controllers
             return View(review);
         }
 
+        // ----------------------- No Access to Edit Method - GET ---------------------- //
+
         // GET: Reviews/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
-            {
-                return HttpNotFound();
-            }
-            return View(review);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Review review = db.Reviews.Find(id);
+        //    if (review == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(review);
+        //}
+
+        // ----------------------- No Access to Edit Method - POST ---------------------- //
 
         // POST: Reviews/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp")] Review review)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(review).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(review);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp")] Review review)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(review).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(review);
+        //}
 
-        // GET: Reviews/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
-            {
-                return HttpNotFound();
-            }
-            return View(review);
-        }
+        // ----------------------- No Access to Delete Method - GET ---------------------- //
 
-        // POST: Reviews/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Review review = db.Reviews.Find(id);
-            db.Reviews.Remove(review);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// GET: Reviews/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Review review = db.Reviews.Find(id);
+        //    if (review == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(review);
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        // ----------------------- No Access to Delete Method - POST ---------------------- //
+
+        //// POST: Reviews/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Review review = db.Reviews.Find(id);
+        //    db.Reviews.Remove(review);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
