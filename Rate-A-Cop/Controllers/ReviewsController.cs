@@ -129,70 +129,78 @@ namespace Rate_A_Cop.Controllers
             return View(review);
         }
 
+        // ----------------------- No Access to Edit Method - GET ---------------------- //
+
         // GET: Reviews/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
-            {
-                return HttpNotFound();
-            }
-            return View(review);
-        }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Review review = db.Reviews.Find(id);
+        //    if (review == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(review);
+        //}
+
+        // ----------------------- No Access to Edit Method - POST ---------------------- //
 
         // POST: Reviews/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp")] Review review)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(review).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(review);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "ReviewID,ReviewText,ReviewType,Location,ReviewTimeStamp")] Review review)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(review).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(review);
+        //}
 
-        // GET: Reviews/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Review review = db.Reviews.Find(id);
-            if (review == null)
-            {
-                return HttpNotFound();
-            }
-            return View(review);
-        }
+        // ----------------------- No Access to Delete Method - GET ---------------------- //
 
-        // POST: Reviews/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Review review = db.Reviews.Find(id);
-            db.Reviews.Remove(review);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// GET: Reviews/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Review review = db.Reviews.Find(id);
+        //    if (review == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(review);
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        // ----------------------- No Access to Delete Method - POST ---------------------- //
+
+        //// POST: Reviews/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Review review = db.Reviews.Find(id);
+        //    db.Reviews.Remove(review);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
