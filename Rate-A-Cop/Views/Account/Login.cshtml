@@ -8,7 +8,6 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
         <h2>@ViewBag.Title.</h2>
-        @*<div class="row">*@
 
             <section id="loginForm">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -41,7 +40,9 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-default" />
+                            <input type="submit" value="LOG IN" class="btn btn-default create-new" />
+                            @*@Html.ActionLink("Register as a new user", "Register")*@
+                            <a href="@Url.Action("Register")"><span class="btn btn-default create-new new-user">REGISTER</span></a>
                         </div>
                     </div>
                     <br />
@@ -50,14 +51,13 @@
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>
 
-                    <div class="register-as">
+                    @*<div class="register-as">
                         <p>
                             @Html.ActionLink("Register as a new user", "Register")
                         </p>
-                    </div>
+                    </div>*@
                 }
             </section>
-        @*</div>*@
         <div class="col-md-12">
             <section id="socialLoginForm">
                 @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })

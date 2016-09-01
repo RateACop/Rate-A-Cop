@@ -481,5 +481,21 @@ margin-left:0 !important;
 }
 .email{
     font-family:  Roboto, sans-serif; 
-    font-size:2em;
+    font-size:1.5em;
+}
+.create-new{
+    letter-spacing:3px;
+    background-color:transparent;
+    color:white;
+    -webkit-transition:all 0.3s;
+    font-size:1.2em;
+}
+.create-new:hover{
+    background-color:transparent;
+    color:white;
+    -webkit-transform:scale(1.1);
+    transform:scale(1.1);
+}
+.new-user{
+    margin-left:10px;
 }
