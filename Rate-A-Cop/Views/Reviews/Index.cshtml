@@ -77,11 +77,10 @@
             @* ---------------- Read More button. Takes user to details(reviewID) view --------------- *@
             <button class="btn btn-block"><a class="officer-name-link no-underline" href="@Url.Action("Details", "Reviews", new { id = item.ReviewID })"><h4 class="read-more">READ MORE</h4></a></button>
 
-        </div>
+        </div>@*End Review Cards*@
     }
-        <br />
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
- new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-    </div>
+@*Page Navigation*@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
