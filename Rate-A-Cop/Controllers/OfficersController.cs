@@ -31,7 +31,6 @@ namespace Rate_A_Cop.Controllers
             }
             
             ViewBag.CurrentFilter = searchString;
-            
 
                        // Search bar
                        var officers = from item in db.Officers
