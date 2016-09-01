@@ -462,3 +462,6 @@ font-family:  Roboto, sans-serif;
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
 margin-left:0 !important;
 }
+.officer-name-label{
+    padding-left:10px !important;
+}
