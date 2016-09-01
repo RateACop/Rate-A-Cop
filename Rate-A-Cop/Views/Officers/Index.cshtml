@@ -37,7 +37,7 @@
                         @Html.DisplayFor(modelItem => item.BadgeNumber)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.OfficerName)
+                        <span class="officer-index-link"><a class="officer-name-link officer-index-link" href="@Url.Action("Details", "Officers", new { id = item.OfficerID })">@Html.DisplayFor(modelItem => item.OfficerName)</a></span>
                     </td>
                 </tr>
             }
